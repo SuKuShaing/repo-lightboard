@@ -1,0 +1,24 @@
+---
+import LineasDeLuz from "@/components/LineasDeLuz.astro";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/styles/reset.css">
+</head>
+<body>
+    <slot />
+    <LineasDeLuz />
+</body>
+</html>
+
+<style is:global>
+    body {
+        background: linear-gradient(233deg, #0B0824 2.37%, #04030E 99.63%);
+    }
+</style>

@@ -1,16 +1,29 @@
 ---
-
+import MainLayout from "@/layouts/MainLayout.astro";
+import ComoSeUtiliza from "@/sections/ComoSeUtiliza.astro";
+import Contacto from "@/sections/Contacto.astro";
+import Cotizar from "@/sections/Cotizar.astro";
+import Dimensiones from "@/sections/Dimensiones.astro";
+import Footer from "@/sections/Footer.astro";
+import Hero from "@/sections/Hero.astro";
+import NavBar from "@/sections/NavBar.astro";
+import PromesaTexto from "@/sections/PromesaTexto.astro";
+import PromesaVisual from "@/sections/PromesaVisual.astro";
+import ProyectosRealizados from "@/sections/ProyectosRealizados.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout>
+    <NavBar />
+    <Hero />
+    <Contacto />
+    <PromesaVisual />
+    <PromesaTexto />
+    <ProyectosRealizados />
+    <Contacto />
+    <ComoSeUtiliza />
+    <Dimensiones />
+    <Cotizar />
+    <Contacto />
+    <Footer />
+</MainLayout>
+
