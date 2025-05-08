@@ -17,6 +17,10 @@
     text-decoration: none;
     border: none;
     outline: none;
+    font-family: inherit; /* Heredar la fuente */
+    font-size: inherit;   /* Heredar el tamaño */
+    line-height: inherit; /* Heredar el interlineado */
+    color: inherit;       /* Heredar el color */
 }
 
 /* resetear el tamaño del texto para poder trabajar con Rem y que el valor rem sea igual al resultado en px*/
