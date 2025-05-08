@@ -40,4 +40,5 @@ h1, h2, h3, h4 {
 p {
     /* Prevent text orphans (single words on last line. */
     text-wrap: pretty;
+    margin-block: 1lh; /* Espacio entre párrafos igual a la altura de la línea */
 }
