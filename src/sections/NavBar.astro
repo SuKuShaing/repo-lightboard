@@ -1,1 +1,43 @@
-NavBar
+---
+const menuItems = [
+	{ name: "Contacto", href: "#" },
+	{ name: "Características", href: "#" },
+	{ name: "Proyectos Realizados", href: "#" },
+	{ name: "Cotizar", href: "#" },
+];
+---
+
+<header>
+	<div class="logo"></div>
+	<nav>
+		{menuItems.map(({ name, href }) => <a href={href}>{name}</a>)}
+	</nav>
+</header>
+
+<style>
+	header {
+		padding: 20px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	nav {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+
+		& a {
+			color: var(--blanco-text);
+			text-decoration: none;
+			font-size: 1.8rem;
+			transition: all 0.3s ease-in-out;
+
+			&:hover {
+                text-shadow:
+                    0 0 10px rgba(255, 255, 255, 0.5),
+                    0 0 20px rgba(255, 255, 255, 0.5);
+			}
+		}
+	}
+</style>
