@@ -2,50 +2,61 @@
 import LineasDeLuz from "@/components/LineasDeLuz.astro";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO Meta Tags -->
-    <title>Lightboard en chile | Mejora tus clases online</title>
-    <meta name="description" content="Lightboard en Chile. Mejora tus clases online con la pizarra de luz. Ideal para universidades, colegios, liceos, profesores y estudiantes.">
-    <meta name="keywords" content="Lightboard, pizarra de luz, pizarra transparente, clases en línea, clases online, profesores, estudiantes, Chile">
-    <meta name="author" content="Sebastián Sanhueza">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#0B0824">
+		<!-- SEO Meta Tags -->
+		<title>Lightboard en chile | Mejora tus clases online</title>
+		<meta
+			name="description"
+			content="Lightboard en Chile. Mejora tus clases online con la pizarra de luz. Ideal para universidades, colegios, liceos, profesores y estudiantes."
+		/>
+		<meta
+			name="keywords"
+			content="Lightboard, pizarra de luz, pizarra transparente, clases en línea, clases online, profesores, estudiantes, Chile"
+		/>
+		<meta name="author" content="Sebastián Sanhueza" />
+		<meta name="robots" content="index, follow" />
+		<meta name="theme-color" content="#0B0824" />
 
-    <!-- Favicon -->
-    
-    <!-- RRSS -->
-    
+		<!-- Favicon -->
+        <link rel="shortcut icon" href="favicons/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png" />
+		<link rel="manifest" href="favicons/site.webmanifest" />
 
-    <link rel="stylesheet" href="/styles/reset.css">
-</head>
-<body>
-    <main>
-        <slot />
-    </main>
-    <LineasDeLuz />
-</body>
+		<!-- RRSS -->
+        
+		<!-- CSS -->
+		<link rel="stylesheet" href="/styles/reset.css" />
+	</head>
+	<body>
+		<main>
+			<slot />
+		</main>
+		<LineasDeLuz />
+	</body>
 </html>
 
 <style is:global>
-    :root {
-        --blanco-text: rgba(255, 255, 255, 0.9);
-    }
+	:root {
+		--blanco-text: rgba(255, 255, 255, 0.9);
+	}
 
-    body {
-        background: linear-gradient(90deg, #04030E, #0B0824);
-        color: #fff;
-        font-family: roboto, sans-serif;
-    }
-    
-    main {
-        display: flex;
-        flex-direction: column;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
+	body {
+		background: linear-gradient(90deg, #04030e, #0b0824);
+		color: #fff;
+		font-family: roboto, sans-serif;
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
 </style>
