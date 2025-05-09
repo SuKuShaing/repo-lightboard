@@ -5,10 +5,14 @@ const menuItems = [
 	{ name: "Proyectos Realizados", href: "#" },
 	{ name: "Cotizar", href: "#" },
 ];
+
+import Logo from "@/assets/logo-lightboard.svg";
 ---
 
 <header>
-	<div class="logo"></div>
+	<a class="logo" href="#">
+        <Logo class="logo-svg" />
+    </a>
 	<nav>
 		{menuItems.map(({ name, href }) => <a href={href}>{name}</a>)}
 	</nav>
@@ -22,6 +26,18 @@ const menuItems = [
 		align-items: center;
 	}
 
+    .logo {
+        width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .logo-svg {
+        width: 100%; /* El SVG ocupará todo el ancho del contenedor */
+        height: 100%; /* El SVG ocupará todo el alto del contenedor */
+    }
+
 	nav {
 		display: flex;
 		align-items: center;
@@ -31,7 +47,7 @@ const menuItems = [
 			color: var(--blanco-text);
 			text-decoration: none;
 			font-size: 1.8rem;
-			transition: all 0.3s ease-in-out;
+			transition: all 0.25s ease-in-out;
 
 			&:hover {
                 text-shadow:
