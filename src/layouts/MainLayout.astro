@@ -51,7 +51,13 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 	}
 
 	body {
-		background: linear-gradient(90deg, #04030e, #0b0824);
+		background:
+			linear-gradient(180deg, #0b0824, transparent 90%) no-repeat, /* radiente lineal principal */
+			linear-gradient(90deg, #04030e, #0b0824); /* radiente lineal principal */
+		background-size: 100% 10vh, 100% 100%; /* El radial ocupa el 10% de la pantalla */
+		/* background-size: ancho-primera-capa alto-primera-capa, ancho-segunda-capa alto-segunda-capa, etc; */
+		background-position: top, top; /* especifica la posición inicial de cada capa de fondo en el contenedor */
+
 		color: #fff;
 		font-family: roboto, sans-serif;
 	}
