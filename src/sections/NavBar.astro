@@ -11,8 +11,8 @@ import Logo from "@/assets/logo-lightboard.svg";
 
 <header>
 	<a class="logo" href="#">
-        <Logo class="logo-svg" />
-    </a>
+		<Logo class="logo-svg" />
+	</a>
 	<nav>
 		{menuItems.map(({ name, href }) => <a href={href}>{name}</a>)}
 	</nav>
@@ -26,22 +26,33 @@ import Logo from "@/assets/logo-lightboard.svg";
 		align-items: center;
 	}
 
-    .logo {
-        width: 100px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+	.logo {
+		width: 100px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 
-    .logo-svg {
-        width: 100%; /* El SVG ocupará todo el ancho del contenedor */
-        height: 100%; /* El SVG ocupará todo el alto del contenedor */
-    }
+	.logo-svg {
+		width: 100%; /* El SVG ocupará todo el ancho del contenedor */
+		height: 100%; /* El SVG ocupará todo el alto del contenedor */
+	}
 
 	nav {
 		display: flex;
 		align-items: center;
 		gap: 20px;
+		padding: 20px 30px;
+		border-radius: 15px;
+		border: 1px solid rgba(153, 153, 153, 0.3);
+		background: linear-gradient(
+			232deg,
+			rgba(255, 255, 255, 0.2) -8.36%,
+			rgba(139, 139, 139, 0.16) 111.4%
+		);
+		background-blend-mode: plus-lighter;
+		box-shadow: -5px 5px 12px 0px rgba(0, 0, 0, 0.5);
+		backdrop-filter: blur(20px);
 
 		& a {
 			color: var(--blanco-text);
@@ -50,9 +61,9 @@ import Logo from "@/assets/logo-lightboard.svg";
 			transition: all 0.25s ease-in-out;
 
 			&:hover {
-                text-shadow:
-                    0 0 10px rgba(255, 255, 255, 0.5),
-                    0 0 20px rgba(255, 255, 255, 0.5);
+				text-shadow:
+					0 0 10px rgba(255, 255, 255, 0.5),
+					0 0 20px rgba(255, 255, 255, 0.5);
 			}
 		}
 	}
