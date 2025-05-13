@@ -12,6 +12,7 @@
       "@styles/*": ["./src/styles/*"],
       "@sections/*": ["./src/sections/*"],
       "@assets/*": ["./src/assets/*"],
+      "@imgs/*": ["./src/assets/img/*"],
     }
   }
 }
