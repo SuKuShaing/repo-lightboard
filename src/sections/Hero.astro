@@ -1,25 +1,50 @@
 ---
-import TextH1 from '@components/TextH1.astro';
-import LightBoardImg from '@components/LightBoardImg.astro';
+import TextH1 from "@components/TextH1.astro";
+import LightBoardImg from "@components/LightBoardImg.astro";
 
-import ImgPrincipal from '@imgs/imagen principal ampliada.jpg';
+import ImgPrincipal from "@imgs/imagen principal ampliada.jpg";
+import FlechaAbajo from "@assets/FlechaAbajo.svg";
 ---
+
 <div class="hero">
-    <TextH1 texto="Obtén tu Lightboard en Chile"/>
-	<LightBoardImg 
-        src={ImgPrincipal}
-        alt="Imagen de la instalación de una lightboard"
-        width={500}
-    />
+	<TextH1 texto="Obtén tu Lightboard en Chile" />
+	<LightBoardImg
+		src={ImgPrincipal}
+		alt="Imagen de la instalación de una lightboard"
+		width={500}
+	/>
+</div>
+<div class="Flecha-abajo">
+	<FlechaAbajo class="FlechaAbajo" />
 </div>
 
 <style>
-    .hero {
-        display: flex;
-        align-items: center;
-        justify-content:space-between;
-        width: 100%;
-        gap: 50px;
-        margin: 30px 0;
-    }
+	.hero {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		gap: 50px;
+		margin: 30px 0;
+	}
+
+	.Flecha-abajo {
+		display: grid;
+		place-items: center;
+	}
+
+	.FlechaAbajo {
+		backdrop-filter: blur(20px);
+		animation: rebote 1.2s infinite ease-in-out;
+	}
+
+	@keyframes rebote {
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(10px);
+		}
+	}
 </style>
