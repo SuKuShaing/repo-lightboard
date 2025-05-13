@@ -1,1 +1,25 @@
-Hero
+---
+import TextH1 from '@components/TextH1.astro';
+import LightBoardImg from '@components/LightBoardImg.astro';
+
+import ImgPrincipal from '@imgs/imagen principal ampliada.jpg';
+---
+<div class="hero">
+    <TextH1 texto="Obtén tu Lightboard en Chile"/>
+	<LightBoardImg 
+        src={ImgPrincipal}
+        alt="Imagen de la instalación de una lightboard"
+        width={500}
+    />
+</div>
+
+<style>
+    .hero {
+        display: flex;
+        align-items: center;
+        justify-content:space-between;
+        width: 100%;
+        gap: 50px;
+        margin: 30px 0;
+    }
+</style>

@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+
+const { src, alt, width } = Astro.props;
+---
+
+<div style=`max-width: ${width}px; padding: ${(width/100)+10}px;`>
+	<Image
+		src={src}
+		alt={alt}
+		widths={[600, 1000, 2000, 3000, src.width]}
+		sizes={`(max-width: 400px) 600px, (max-width: 700px) 1000px, (max-width: 1600px) 2000px, (max-width: 2400px) 3000px, ${src.width}px`}
+		class="Img"
+	/>
+</div>
+
+<style>
+	div {
+		border-radius: 15px;
+		border: 1px solid rgba(153, 153, 153, 0.6);
+		background: linear-gradient(
+			232deg,
+			rgba(255, 255, 255, 0.2) -8.36%,
+			rgba(139, 139, 139, 0.16) 111.4%
+		);
+		background-blend-mode: plus-lighter;
+		box-shadow: -5px 5px 12px 0px rgba(0, 0, 0, 0.5);
+		backdrop-filter: blur(20px);
+	}
+
+	.Img {
+		width: 100%;
+		height: auto;
+		border-radius: 10px;
+	}
+</style>
