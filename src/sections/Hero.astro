@@ -15,7 +15,7 @@ import FlechaAbajo from "@assets/FlechaAbajo.svg";
 	/>
 </div>
 <div class="Flecha-abajo">
-	<FlechaAbajo class="FlechaAbajo" />
+	<FlechaAbajo class="SVG-FlechaAbajo" />
 </div>
 
 <style>
@@ -24,18 +24,20 @@ import FlechaAbajo from "@assets/FlechaAbajo.svg";
 		align-items: center;
 		justify-content: space-between;
 		width: 100%;
-		gap: 50px;
+		/* gap: 50px; */
 		margin: 30px 0;
 	}
 
 	.Flecha-abajo {
+		margin-top: 30px;
 		display: grid;
 		place-items: center;
 	}
 
-	.FlechaAbajo {
+	.SVG-FlechaAbajo {
 		backdrop-filter: blur(20px);
 		animation: rebote 1.2s infinite ease-in-out;
+		width: clamp(30px, 10vw, 53px);
 	}
 
 	@keyframes rebote {
@@ -45,6 +47,19 @@ import FlechaAbajo from "@assets/FlechaAbajo.svg";
 		}
 		50% {
 			transform: translateY(10px);
+		}
+	}
+
+	@media (max-width: 1000px) {
+		.hero {
+			flex-direction: column;
+			text-align: center;
+			gap: 40px;
+			margin: 20px 0;
+		}
+
+		.Flecha-abajo {
+			margin-top: 0px;
 		}
 	}
 </style>

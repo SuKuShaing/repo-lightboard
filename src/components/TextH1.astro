@@ -10,10 +10,11 @@ const { texto } = Astro.props;
 
 <style>
 	h1 {
-		font-size: 80px;
+		font-size: clamp(5rem, 3.909rem + 3.409vw, 8rem);
 		font-style: normal;
 		font-weight: 900;
-		line-height: 78px; /* 97.5% */
+		line-height: calc(clamp(5rem, 3.909rem + 3.409vw, 8rem) * 0.975);
+		/* line-height: 78px; 97.5% */
 		letter-spacing: 1.6px;
 
 		background: linear-gradient(
@@ -24,5 +25,7 @@ const { texto } = Astro.props;
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
+
+		max-width: 500px;
 	}
 </style>

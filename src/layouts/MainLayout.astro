@@ -35,8 +35,6 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 
 		<!-- RRSS -->
 
-		<!-- CSS -->
-		<link rel="stylesheet" href="/styles/reset.css" />
 	</head>
 	<body>
 		<main>
@@ -47,15 +45,68 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 </html>
 
 <style is:global>
+	/* ********************************************************** */
+	/* **************** Reset estilos por defectos ************** */
+	/* ********************************************************** */
+
+	* {
+		/* Include padding and border in si ze calculation. */
+		box-sizing: border-box;
+		/* Position based on immediate parent and al low adjusting top/right/bottom/left */
+		position: relative;
+		/* Prevent grid and flex items from spilling out of their container. */
+		min-width: 0;
+
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		text-decoration: none;
+		border: none;
+		outline: none;
+		font-family: inherit; /* Heredar la fuente */
+		font-size: inherit; /* Heredar el tamaño */
+		line-height: inherit; /* Heredar el interlineado */
+		color: inherit; /* Heredar el color */
+	}
+
+	/* resetear el tamaño del texto para poder trabajar con Rem y que el valor rem sea igual al resultado en px*/
+	html {
+		font-size: 62.5%;
+	}
+
+	body {
+		/* Ensure that the body fil Is the entire viewport. */
+		min-height: 100dvh;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		/* Balance headings across multiple lines into an ven block. */
+		text-wrap: balance;
+	}
+	p {
+		/* Prevent text orphans (single words on last line. */
+		text-wrap: pretty;
+		margin-block: 1lh; /* Espacio entre párrafos igual a la altura de la línea */
+	}
+
+	/* ********************************************************** */
+	/* ******************* Estilos por Globales ***************** */
+	/* ********************************************************** */
+
 	:root {
 		--blanco-text: rgba(255, 255, 255, 0.9);
 	}
 
 	body {
 		background:
-			linear-gradient(180deg, #0b0824, transparent 90%) no-repeat, /* radiente lineal principal */
-			linear-gradient(90deg, #04030e, #0b0824); /* radiente lineal principal */
-		background-size: 100% 10vh, 100% 100%; /* El radial ocupa el 10% de la pantalla */
+			linear-gradient(180deg, #0b0824, transparent 90%) no-repeat,
+			/* radiente lineal principal */ linear-gradient(90deg, #04030e, #0b0824); /* radiente lineal principal */
+		background-size:
+			100% 10vh,
+			100% 100%; /* El radial ocupa el 10% de la pantalla */
 		/* background-size: ancho-primera-capa alto-primera-capa, ancho-segunda-capa alto-segunda-capa, etc; */
 		background-position: top, top; /* especifica la posición inicial de cada capa de fondo en el contenedor */
 
@@ -71,6 +122,5 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 		max-width: 1200px;
 		margin: 0 auto;
 		padding: 20px;
-
 	}
 </style>
