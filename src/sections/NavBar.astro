@@ -30,6 +30,7 @@ import Logo from "@/assets/logo-lightboard.svg";
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		margin-right: 20px;
 	}
 
 	.logo-svg {
@@ -53,10 +54,10 @@ import Logo from "@/assets/logo-lightboard.svg";
 		box-shadow: -5px 5px 12px 0px rgba(0, 0, 0, 0.5);
 		backdrop-filter: blur(20px);
 
-		& a {
+		a {
 			color: var(--blanco-text);
 			text-decoration: none;
-			font-size: 3rem;
+			font-size: clamp(2.5rem, 0rem + 2.5vw, 3rem); /* entre 1000 y 1200 px */
 			transition: all 0.25s ease-in-out;
 
 			&:hover {
