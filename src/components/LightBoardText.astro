@@ -1,0 +1,19 @@
+<div>
+	<slot />
+</div>
+
+<style>
+	div {
+		border-radius: 15px;
+		border: 1px solid rgba(153, 153, 153, 0.15);
+		background: linear-gradient(
+			232deg,
+			rgba(255, 255, 255, 0.1) -8.36%,
+			rgba(139, 139, 139, 0.08) 111.4%
+		);
+		background-blend-mode: plus-lighter;
+		box-shadow: -5px 5px 12px 0px rgba(0, 0, 0, 0.5);
+		backdrop-filter: blur(7.5px);
+		padding: clamp(10px, 1% + 7px, 20px) clamp(4px, 4% + 4px, 40px);
+	}
+</style>
