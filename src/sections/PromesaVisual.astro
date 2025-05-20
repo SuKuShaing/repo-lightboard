@@ -1,1 +1,55 @@
-Promesa Visual
+---
+import LightBoardImg from "@/components/LightBoardImg.astro";
+import TextH2 from "@/components/TextH2.astro";
+
+import ImgEjempLight1 from "@imgs/promesaVisual/Ejemplo-lightboard-1.jpg";
+import ImgEjempLight2 from "@imgs/promesaVisual/Ejemplo-lightboard-2.jpg";
+import ImgEjempLight3 from "@imgs/promesaVisual/Ejemplo-lightboard-3.jpg";
+import ImgEjempLight4 from "@imgs/promesaVisual/Ejemplo-lightboard-4.jpg";
+import ImgEjempLight5 from "@imgs/promesaVisual/Ejemplo-lightboard-5.jpg";
+import ImgEjempLight6 from "@imgs/promesaVisual/Ejemplo-lightboard-6.png";
+import ImgEjempLight7 from "@imgs/promesaVisual/Ejemplo-lightboard-7.jpg";
+import ImgEjempLight8 from "@imgs/promesaVisual/Ejemplo-lightboard-8.jpg";
+import ImgEjempLight9 from "@imgs/promesaVisual/Ejemplo-lightboard-9.jpg";
+import VidEjempLight1 from "@imgs/promesaVisual/Video-Ejemplo-lightboard-1.jpg";
+import VidEjempLight2 from "@imgs/promesaVisual/Video-Ejemplo-lightboard-2.jpg";
+import VidEjempLight3 from "@imgs/promesaVisual/Video-Ejemplo-lightboard-3.jpg";
+---
+
+<section>
+    <TextH2 texto="Como se verán tus videos con nuestra Lightboard"/>
+    <div class="listaDeVideos">
+        <LightBoardImg  src={ImgEjempLight1} alt="Clase online con una lightboard" ancho={300}/>
+        <LightBoardImg  src={ImgEjempLight2} alt="Clase universitaria con una lightboard" ancho={300}/>
+        <LightBoardImg  src={ImgEjempLight3} alt="Clase escolar con una lightboard" ancho={300}/>
+        <LightBoardImg  src={ImgEjempLight4} alt="Clase en linea con una lightboard" ancho={300}/>
+    </div>
+    <div class="listaDeVideos">
+        <LightBoardImg  src={ImgEjempLight5} alt="Clase online con una pizarra de luz" ancho={300}/>
+        <LightBoardImg  src={ImgEjempLight6} alt="Clase universitaria con una pizarra de luz" ancho={300}/>
+        <LightBoardImg  src={ImgEjempLight7} alt="Clase escolar con una pizarra de luz" ancho={300}/>
+    </div>
+    <div class="listaDeVideos">
+        <LightBoardImg  src={ImgEjempLight8} alt="Clase en linea con una pizarra de luz" ancho={300}/>
+        <LightBoardImg  src={VidEjempLight1} alt="Video de Clase online con una lightboard" ancho={300}/>
+        <LightBoardImg  src={VidEjempLight2} alt="Video de Clase universitaria con una lightboard" ancho={300}/>
+        <LightBoardImg  src={VidEjempLight3} alt="Video de Clase escolar con una lightboard" ancho={300}/>
+    </div>
+</section>
+
+<style>
+    section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        margin: 30px auto;
+        overflow: hidden;
+    }
+    .listaDeVideos {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        min-width: 1000px;
+    }
+</style>

@@ -1,10 +1,17 @@
 ---
+import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 
-const { src, alt, width } = Astro.props;
+interface Props {
+	src: ImageMetadata;
+	alt: string;
+	ancho: number;
+}
+
+const { src, alt, ancho } = Astro.props;
 ---
 
-<div style=`max-width: ${width}px;`>
+<div style={`max-width: ${ancho}px;`}>
 	<Image
 		src={src}
 		alt={alt}
@@ -16,6 +23,8 @@ const { src, alt, width } = Astro.props;
 
 <style>
 	div {
+		display: grid;
+		place-items: center;
 		border-radius: 15px;
 		border: 1px solid rgba(153, 153, 153, 0.6);
 		background: linear-gradient(
