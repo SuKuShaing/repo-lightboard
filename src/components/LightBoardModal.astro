@@ -1,0 +1,96 @@
+---
+import type { ImageMetadata } from "astro";
+import LightBoardImg from "./LightBoardImg.astro";
+import CerrarSvg from "@svgs/Close.svg";
+
+interface Props {
+	src: ImageMetadata;
+	alt: string;
+	ancho: number;
+}
+
+const { src, alt, ancho } = Astro.props;
+
+// const anchoGrande = Math.min(800, ancho);
+---
+
+<div class="open-modal">
+	<LightBoardImg src={src} alt={alt} ancho={ancho} />
+</div>
+
+<dialog id="dialogHTML">
+	<button class="cerrar-modal">
+		<CerrarSvg class="svgCerrar" />
+	</button>
+	<LightBoardImg src={src} alt={alt} ancho={800} />
+</dialog>
+
+<style>
+	dialog {
+		margin: auto;
+		background-color: transparent;
+		position: relative; /* Para que el botón se posicione respecto al dialog */
+		overflow: visible;
+
+		.cerrar-modal {
+			position: absolute;
+			top: -70px; /* 30px por encima del dialog */
+			right: 0px; /* alineado a la derecha */
+			background: linear-gradient(
+				232deg,
+				rgba(255, 255, 255, 0.2) -8.36%,
+				rgba(139, 139, 139, 0.16) 111.4%
+			);
+			border: 1px solid rgba(153, 153, 153, 0.6);
+			cursor: pointer;
+            border-radius: 50%;
+            padding: 5px;
+			z-index: 10;
+
+			.svgCerrar {
+				color: rgba(255, 255, 255, 0.8);
+				width: 30px;
+				height: 30px;
+			}
+		}
+	}
+
+	dialog::backdrop {
+		background: rgba(0, 0, 0, 0.2);
+		backdrop-filter: blur(10px);
+	}
+</style>
+
+<script>
+	// Variables
+	const dialog = document.getElementById("dialogHTML") as HTMLDialogElement;
+	const openModalButton = document.querySelector(
+		".open-modal"
+	) as HTMLDivElement;
+
+	// listerner para el evento de click
+	openModalButton?.addEventListener("click", openModal);
+
+	// abrir modal
+	function openModal() {
+		dialog.showModal();
+	}
+
+	// cerrar modal
+	function closeModal() {
+		dialog.close();
+	}
+
+	// Cerrar modal al hacer click fuera de él
+	dialog.addEventListener("click", (e) => {
+		const dialogDimensions = dialog.getBoundingClientRect();
+		if (
+			e.clientX < dialogDimensions.left ||
+			e.clientX > dialogDimensions.right ||
+			e.clientY < dialogDimensions.top ||
+			e.clientY > dialogDimensions.bottom
+		) {
+			closeModal();
+		}
+	});
+</script>

@@ -3,16 +3,22 @@ import TextH1 from "@components/TextH1.astro";
 import LightBoardImg from "@components/LightBoardImg.astro";
 
 import ImgPrincipal from "@imgs/imagen principal ampliada.jpg";
-import FlechaAbajo from "@assets/FlechaAbajo.svg";
+import FlechaAbajo from "@svgs/FlechaAbajo.svg";
+import LightBoardModal from "@components/LightBoardModal.astro";
 ---
 
 <div class="hero">
 	<TextH1 texto="Obtén tu Lightboard en Chile" />
-	<LightBoardImg
+	<LightBoardModal 
 		src={ImgPrincipal}
 		alt="Imagen de la instalación de una lightboard"
 		ancho={500}
 	/>
+	<!-- <LightBoardImg
+		src={ImgPrincipal}
+		alt="Imagen de la instalación de una lightboard"
+		ancho={500}
+	/> -->
 </div>
 <div class="Flecha-abajo">
 	<FlechaAbajo class="SVG-FlechaAbajo" />

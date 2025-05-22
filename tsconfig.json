@@ -13,6 +13,7 @@
       "@sections/*": ["./src/sections/*"],
       "@assets/*": ["./src/assets/*"],
       "@imgs/*": ["./src/assets/img/*"],
+      "@svgs/*": ["./src/assets/svg/*"],
     }
   }
 }
