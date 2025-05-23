@@ -18,7 +18,7 @@ const id = modalId ?? `dialog-${Math.random().toString(36).slice(2, 10)}`;
 
 
 
-<div id={`btn-open-modal-${id}`} class="open-modal" data-idNombreModal={id}>
+<div id={`btn-open-modal-${id}`} class="open-modal" data-idNombreModal={id} style={`max-width: ${ancho}px; aspect-ratio: 16/9;`}>
 	<LightBoardImg src={src} alt={alt} ancho={ancho} />
 </div>
 
@@ -72,7 +72,7 @@ const id = modalId ?? `dialog-${Math.random().toString(36).slice(2, 10)}`;
 	dialog::backdrop {
 		background: rgba(0, 0, 0, 0.2);
 		backdrop-filter: blur(10px);
-		transition: all 0.3s allow-discrete;
+		transition: all 0.2s allow-discrete;
 	}
 
 	@starting-style {
