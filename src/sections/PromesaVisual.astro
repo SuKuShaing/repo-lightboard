@@ -1,5 +1,6 @@
 ---
 import LightBoardImg from "@/components/LightBoardImg.astro";
+import LightBoardModal from "@/components/LightBoardModal.astro";
 import TextH2 from "@/components/TextH2.astro";
 
 import ImgEjempLight1 from "@imgs/promesaVisual/Ejemplo-lightboard-1.jpg";
@@ -19,10 +20,14 @@ import VidEjempLight3 from "@imgs/promesaVisual/Video-Ejemplo-lightboard-3.jpg";
 <section>
     <TextH2 texto="Como se verán tus videos con nuestra Lightboard"/>
     <div class="listaDeVideos">
-        <LightBoardImg  src={ImgEjempLight1} alt="Clase online con una lightboard" ancho={300}/>
+        <!-- <LightBoardImg  src={ImgEjempLight1} alt="Clase online con una lightboard" ancho={300}/>
         <LightBoardImg  src={ImgEjempLight2} alt="Clase universitaria con una lightboard" ancho={300}/>
         <LightBoardImg  src={ImgEjempLight3} alt="Clase escolar con una lightboard" ancho={300}/>
-        <LightBoardImg  src={ImgEjempLight4} alt="Clase en linea con una lightboard" ancho={300}/>
+        <LightBoardImg  src={ImgEjempLight4} alt="Clase en linea con una lightboard" ancho={300}/> -->
+        <LightBoardModal src={ImgEjempLight1} alt="Clase online con una lightboard" ancho={300}/>
+        <LightBoardModal src={ImgEjempLight2} alt="Clase universitaria con una lightboard" ancho={300}/>
+        <LightBoardModal src={ImgEjempLight3} alt="Clase escolar con una lightboard" ancho={300}/>
+        <LightBoardModal src={ImgEjempLight4} alt="Clase en linea con una lightboard" ancho={300}/>
     </div>
     <div class="listaDeVideos">
         <LightBoardImg  src={ImgEjempLight5} alt="Clase online con una pizarra de luz" ancho={300}/>

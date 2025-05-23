@@ -18,7 +18,7 @@ const { src, alt, ancho } = Astro.props;
 	<LightBoardImg src={src} alt={alt} ancho={ancho} />
 </div>
 
-<dialog id="dialogHTML">
+<dialog id=`dialog`>
 	<button class="cerrar-modal">
 		<CerrarSvg class="svgCerrar" />
 	</button>
@@ -26,6 +26,10 @@ const { src, alt, ancho } = Astro.props;
 </dialog>
 
 <style>
+    .open-modal {
+        cursor: pointer;
+    }
+
 	dialog {
 		margin: auto;
 		background-color: transparent;
@@ -61,9 +65,14 @@ const { src, alt, ancho } = Astro.props;
 	}
 </style>
 
+<!-- AQUÍIIIIIIIIIIIIII!!!!!!!, en qué quedé, tengo que hacer que cada modal sea único 
+VER ESTE VIDEO https://www.youtube.com/watch?v=W9K9r0Z-8_c&t=66s
+para implementar la transición de abrir y cerrar el modal
+-->
+
 <script>
 	// Variables
-	const dialog = document.getElementById("dialogHTML") as HTMLDialogElement;
+	const dialog = document.getElementById(`dialog`) as HTMLDialogElement;
 	const openModalButton = document.querySelector(
 		".open-modal"
 	) as HTMLDivElement;
