@@ -9,7 +9,6 @@ dist/
 # dependencies
 node_modules/
 
-
 # logs
 package-lock.json
 npm-debug.log*

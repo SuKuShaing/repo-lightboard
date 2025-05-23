@@ -7,19 +7,23 @@ interface Props {
 	src: ImageMetadata;
 	alt: string;
 	ancho: number;
+	modalId?: string;
 }
 
-const { src, alt, ancho } = Astro.props;
-
-// const anchoGrande = Math.min(800, ancho);
+const { src, alt, ancho, modalId } = Astro.props;
+const id = modalId ?? `dialog-${Math.random().toString(36).slice(2, 10)}`;
 ---
 
-<div class="open-modal">
+
+
+
+
+<div id={`btn-open-modal-${id}`} class="open-modal" data-idNombreModal={id}>
 	<LightBoardImg src={src} alt={alt} ancho={ancho} />
 </div>
 
-<dialog id=`dialog`>
-	<button class="cerrar-modal">
+<dialog id={id}>
+	<button id={`btn-close-modal-${id}`} class="cerrar-modal">
 		<CerrarSvg class="svgCerrar" />
 	</button>
 	<LightBoardImg src={src} alt={alt} ancho={800} />
@@ -65,14 +69,10 @@ const { src, alt, ancho } = Astro.props;
 	}
 </style>
 
-<!-- AQUÍIIIIIIIIIIIIII!!!!!!!, en qué quedé, tengo que hacer que cada modal sea único 
-VER ESTE VIDEO https://www.youtube.com/watch?v=W9K9r0Z-8_c&t=66s
-para implementar la transición de abrir y cerrar el modal
--->
 
-<script>
+<!-- <script>
 	// Variables
-	const dialog = document.getElementById(`dialog`) as HTMLDialogElement;
+	const dialog = document.getElementById(`${modalId}`) as HTMLDialogElement;
 	const openModalButton = document.querySelector(
 		".open-modal"
 	) as HTMLDivElement;
@@ -102,4 +102,4 @@ para implementar la transición de abrir y cerrar el modal
 			closeModal();
 		}
 	});
-</script>
+</script> -->

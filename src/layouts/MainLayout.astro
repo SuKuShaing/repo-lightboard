@@ -34,7 +34,6 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 		<link rel="manifest" href="/site.webmanifest" />
 
 		<!-- RRSS -->
-
 	</head>
 	<body>
 		<main>
@@ -126,7 +125,42 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 
 	@media (width < 1000px) {
 		main {
-			gap: 20px
+			gap: 20px;
 		}
 	}
 </style>
+
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		// Selecciona todos los botones que abren modales
+		document.querySelectorAll('.open-modal').forEach(openBtn => {
+			const modalId = openBtn.getAttribute('data-idNombreModal') as string;
+			const dialog = document.getElementById(modalId) as HTMLDialogElement;
+			if (!dialog) return;
+
+			// Abrir modal al hacer click en la imagen
+			openBtn.addEventListener('click', () => dialog.showModal());
+
+			// Cerrar modal al hacer click en el botón de cerrar
+			const closeBtn = dialog.querySelector('.cerrar-modal');
+			closeBtn?.addEventListener('click', (e) => {
+				e.stopPropagation();
+				dialog.close();
+			});
+
+			// Cerrar modal al hacer click fuera del contenido
+			dialog.addEventListener('click', (e) => {
+				const rect = dialog.getBoundingClientRect();
+				if (
+					e.clientX < rect.left ||
+					e.clientX > rect.right ||
+					e.clientY < rect.top ||
+					e.clientY > rect.bottom
+				) {
+					dialog.close();
+				}
+			});
+		});
+	});
+</script>
