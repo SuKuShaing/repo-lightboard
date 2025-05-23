@@ -130,27 +130,33 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 	}
 </style>
 
-
 <script>
 	document.addEventListener("DOMContentLoaded", () => {
-		// Selecciona todos los botones que abren modales
-		document.querySelectorAll('.open-modal').forEach(openBtn => {
-			const modalId = openBtn.getAttribute('data-idNombreModal') as string;
+		let scrollY = 0;
+
+		document.querySelectorAll(".open-modal").forEach((openBtn) => {
+			const modalId = openBtn.getAttribute("data-idNombreModal") as string;
 			const dialog = document.getElementById(modalId) as HTMLDialogElement;
 			if (!dialog) return;
 
 			// Abrir modal al hacer click en la imagen
-			openBtn.addEventListener('click', () => dialog.showModal());
+			openBtn.addEventListener("click", () => {
+				scrollY = window.scrollY;
+				// document.body.style.position = "fixed";
+				document.body.style.top = `-${scrollY}px`;
+				document.body.style.width = "100%";
+				dialog.showModal();
+			});
 
 			// Cerrar modal al hacer click en el botón de cerrar
-			const closeBtn = dialog.querySelector('.cerrar-modal');
-			closeBtn?.addEventListener('click', (e) => {
+			const closeBtn = dialog.querySelector(".cerrar-modal");
+			closeBtn?.addEventListener("click", (e) => {
 				e.stopPropagation();
 				dialog.close();
 			});
 
 			// Cerrar modal al hacer click fuera del contenido
-			dialog.addEventListener('click', (e) => {
+			dialog.addEventListener("click", (e) => {
 				const rect = dialog.getBoundingClientRect();
 				if (
 					e.clientX < rect.left ||
@@ -160,6 +166,14 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 				) {
 					dialog.close();
 				}
+			});
+
+			// Restaurar scroll al cerrar el modal
+			dialog.addEventListener("close", () => {
+				// document.body.style.position = "";
+				document.body.style.top = "";
+				document.body.style.width = "";
+				window.scrollTo(0, scrollY);
 			});
 		});
 	});
