@@ -39,6 +39,8 @@ const id = modalId ?? `dialog-${Math.random().toString(36).slice(2, 10)}`;
 		background-color: transparent;
 		position: relative; /* Para que el botón se posicione respecto al dialog */
 		overflow: visible;
+		opacity: 0;
+		transition: all 0.3s allow-discrete;
 
 		.cerrar-modal {
 			position: absolute;
@@ -52,7 +54,7 @@ const id = modalId ?? `dialog-${Math.random().toString(36).slice(2, 10)}`;
 			border: 1px solid rgba(153, 153, 153, 0.6);
 			cursor: pointer;
             border-radius: 50%;
-            padding: 6px 5px 5px 5px;
+            padding: 5px;
 			z-index: 10;
 
 			.svgCerrar {
@@ -63,9 +65,25 @@ const id = modalId ?? `dialog-${Math.random().toString(36).slice(2, 10)}`;
 		}
 	}
 
+	dialog[open] {
+		opacity: 1;
+	}
+
 	dialog::backdrop {
 		background: rgba(0, 0, 0, 0.2);
 		backdrop-filter: blur(10px);
+		transition: all 0.3s allow-discrete;
+	}
+
+	@starting-style {
+		dialog[open] {
+			opacity: 0;
+		}
+
+		dialog[open]::backdrop {
+			background: rgba(0, 0, 0, 0.0);
+			backdrop-filter: blur(0px);
+		}
 	}
 </style>
 
