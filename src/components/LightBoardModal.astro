@@ -52,7 +52,7 @@ const id = modalId ?? `dialog-${Math.random().toString(36).slice(2, 10)}`;
 			border: 1px solid rgba(153, 153, 153, 0.6);
 			cursor: pointer;
             border-radius: 50%;
-            padding: 5px;
+            padding: 6px 5px 5px 5px;
 			z-index: 10;
 
 			.svgCerrar {
@@ -71,35 +71,35 @@ const id = modalId ?? `dialog-${Math.random().toString(36).slice(2, 10)}`;
 
 
 <!-- <script>
-	// Variables
-	const dialog = document.getElementById(`${modalId}`) as HTMLDialogElement;
-	const openModalButton = document.querySelector(
-		".open-modal"
-	) as HTMLDivElement;
+	// // Variables
+	// const dialog = document.getElementById(`${modalId}`) as HTMLDialogElement;
+	// const openModalButton = document.querySelector(
+	// 	".open-modal"
+	// ) as HTMLDivElement;
 
-	// listerner para el evento de click
-	openModalButton?.addEventListener("click", openModal);
+	// // listerner para el evento de click
+	// openModalButton?.addEventListener("click", openModal);
 
-	// abrir modal
-	function openModal() {
-		dialog.showModal();
-	}
+	// // abrir modal
+	// function openModal() {
+	// 	dialog.showModal();
+	// }
 
-	// cerrar modal
-	function closeModal() {
-		dialog.close();
-	}
+	// // cerrar modal
+	// function closeModal() {
+	// 	dialog.close();
+	// }
 
-	// Cerrar modal al hacer click fuera de él
-	dialog.addEventListener("click", (e) => {
-		const dialogDimensions = dialog.getBoundingClientRect();
-		if (
-			e.clientX < dialogDimensions.left ||
-			e.clientX > dialogDimensions.right ||
-			e.clientY < dialogDimensions.top ||
-			e.clientY > dialogDimensions.bottom
-		) {
-			closeModal();
-		}
-	});
+	// // Cerrar modal al hacer click fuera de él
+	// dialog.addEventListener("click", (e) => {
+	// 	const dialogDimensions = dialog.getBoundingClientRect();
+	// 	if (
+	// 		e.clientX < dialogDimensions.left ||
+	// 		e.clientX > dialogDimensions.right ||
+	// 		e.clientY < dialogDimensions.top ||
+	// 		e.clientY > dialogDimensions.bottom
+	// 	) {
+	// 		closeModal();
+	// 	}
+	// });
 </script> -->
