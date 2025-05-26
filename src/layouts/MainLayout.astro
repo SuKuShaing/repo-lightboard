@@ -100,9 +100,11 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 	}
 
 	body {
+		/* position: fixed; */
 		background:
 			linear-gradient(180deg, #0b0824, transparent 90%) no-repeat,
-			/* radiente lineal principal */ linear-gradient(90deg, #04030e, #0b0824); /* radiente lineal principal */
+			/* radiente lineal principal */ 
+			linear-gradient(90deg, #04030e, #0b0824); /* radiente lineal principal */
 		background-size:
 			100% 10vh,
 			100% 100%; /* El radial ocupa el 10% de la pantalla */
@@ -131,6 +133,9 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 </style>
 
 <script>
+	//////////////////////////////////// 
+	/// Apertura y cierre de modales ///
+	//////////////////////////////////// 
 	document.addEventListener("DOMContentLoaded", () => {
 		let scrollY = 0;
 
@@ -142,9 +147,12 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 			// Abrir modal al hacer click en la imagen
 			openBtn.addEventListener("click", () => {
 				scrollY = window.scrollY;
-				// document.body.style.position = "fixed";
+				document.body.style.position = "fixed";
 				document.body.style.top = `-${scrollY}px`;
 				document.body.style.width = "100%";
+				document.body.style.background = "#04030e";
+				// document.body.style.backgroundSize = "100% 100%";
+				// document.body.style.backgroundPosition = "top, top";
 				dialog.showModal();
 			});
 
@@ -170,9 +178,10 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 
 			// Restaurar scroll al cerrar el modal
 			dialog.addEventListener("close", () => {
-				// document.body.style.position = "";
+				document.body.style.position = "";
 				document.body.style.top = "";
 				document.body.style.width = "";
+				document.body.style.background = "";
 				window.scrollTo(0, scrollY);
 			});
 		});

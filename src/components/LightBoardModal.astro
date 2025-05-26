@@ -14,11 +14,12 @@ const { src, alt, ancho, modalId } = Astro.props;
 const id = modalId ?? `dialog-${Math.random().toString(36).slice(2, 10)}`;
 ---
 
-
-
-
-
-<div id={`btn-open-modal-${id}`} class="open-modal" data-idNombreModal={id} style={`max-width: ${ancho}px; aspect-ratio: 16/9;`}>
+<div
+	id={`btn-open-modal-${id}`}
+	class="open-modal"
+	data-idNombreModal={id}
+	style={`max-width: ${ancho}px`}
+>
 	<LightBoardImg src={src} alt={alt} ancho={ancho} />
 </div>
 
@@ -30,9 +31,9 @@ const id = modalId ?? `dialog-${Math.random().toString(36).slice(2, 10)}`;
 </dialog>
 
 <style>
-    .open-modal {
-        cursor: pointer;
-    }
+	.open-modal {
+		cursor: pointer;
+	}
 
 	dialog {
 		margin: auto;
@@ -53,8 +54,8 @@ const id = modalId ?? `dialog-${Math.random().toString(36).slice(2, 10)}`;
 			);
 			border: 1px solid rgba(153, 153, 153, 0.6);
 			cursor: pointer;
-            border-radius: 50%;
-            padding: 5px;
+			border-radius: 50%;
+			padding: 5px;
 			z-index: 10;
 
 			.svgCerrar {
@@ -81,12 +82,11 @@ const id = modalId ?? `dialog-${Math.random().toString(36).slice(2, 10)}`;
 		}
 
 		dialog[open]::backdrop {
-			background: rgba(0, 0, 0, 0.0);
+			background: rgba(0, 0, 0, 0);
 			backdrop-filter: blur(0px);
 		}
 	}
 </style>
-
 
 <!-- <script>
 	// // Variables
