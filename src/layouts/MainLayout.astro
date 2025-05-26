@@ -100,7 +100,6 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 	}
 
 	body {
-		/* position: fixed; */
 		background:
 			linear-gradient(180deg, #0b0824, transparent 90%) no-repeat,
 			/* radiente lineal principal */ 
@@ -151,8 +150,7 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 				document.body.style.top = `-${scrollY}px`;
 				document.body.style.width = "100%";
 				document.body.style.background = "#04030e";
-				// document.body.style.backgroundSize = "100% 100%";
-				// document.body.style.backgroundPosition = "top, top";
+				document.documentElement.style.overflow = "hidden";
 				dialog.showModal();
 			});
 
@@ -182,6 +180,7 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 				document.body.style.top = "";
 				document.body.style.width = "";
 				document.body.style.background = "";
+				document.documentElement.style.overflow = "";
 				window.scrollTo(0, scrollY);
 			});
 		});
