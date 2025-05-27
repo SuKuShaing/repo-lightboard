@@ -1,1 +1,93 @@
-Proyectos Realizados
+---
+import Parrafo from "@/components/Parrafo.astro";
+import TextH2 from "@/components/TextH2.astro";
+import TextH3 from "@/components/TextH3.astro";
+import LightBoardModal from "@/components/LightBoardModal.astro";
+
+import ProyectUsach1 from "@imgs/Proyectos/MBA Usach/lightboard preparada para empaque.jpg";
+import ProyectUsach2 from "@imgs/Proyectos/MBA Usach/lightboard empaquetada.jpg";
+import ProyectUsach3 from "@imgs/Proyectos/MBA Usach/Prueba de la lightboard.jpg";
+import ProyectUsach4 from "@imgs/Proyectos/MBA Usach/Prueba de la lightboard 2.jpg";
+import ProyectUsach5 from "@imgs/Proyectos/MBA Usach/Prueba de la lightboard 3.jpg";
+
+import ProyectLampro1 from "@imgs/Proyectos/Lampro_USA/Escribiendo en la LightBoard.png";
+import ProyectLampro2 from "@imgs/Proyectos/Lampro_USA/Foto de entrega.jpg";
+import ProyectLampro3 from "@imgs/Proyectos/Lampro_USA/Foto de entrega sin luz.jpg";
+
+import ProyectGeomesura1 from "@imgs/Proyectos/Geomesura/Rene Garrido con la Lightboard.jpg";
+import ProyectGeomesura2 from "@imgs/Proyectos/Geomesura/Rene Garrido con la Lightboard 2.jpg";
+import ProyectGeomesura3 from "@imgs/Proyectos/Geomesura/Rene Garrido con la Lightboard 3.jpg";
+import ProyectGeomesura4 from "@imgs/Proyectos/Geomesura/Rene Garrido y sus alumnos con la Lightboard.jpg";
+import ProyectGeomesura5 from "@imgs/Proyectos/Geomesura/Rene Garrido en grabaciones con la Lightboard.jpg";
+---
+
+<section>
+	<TextH2 texto="Proyectos Realizados" />
+	<div class="listaDeProyectos">
+		<div class="proyecto">
+			<TextH3 texto="Proyecto MBA Usach" />
+			<Parrafo align="center">
+				LightBoard entregada al Centro de estudios de postgrado y educación
+				continua de la Universidad de Santiago de Chile para sus clases online
+			</Parrafo>
+			<div class="listaDeVideos">
+                <LightBoardModal src={ProyectUsach1} alt="Lightboard preparada para empaque y ser enviada" ancho={300} />
+				<LightBoardModal src={ProyectUsach2} alt="Lightboard empaquetada en el lugar de entrega" ancho={300} />
+				<LightBoardModal src={ProyectUsach3} alt="Prueba y demostración de la lightboard antes de ser entregada" ancho={300} />
+				<LightBoardModal src={ProyectUsach4} alt="Prueba y demostración de la lightboard antes de ser entregada" ancho={300} />
+				<!-- <LightBoardModal src={ProyectUsach5} alt="Prueba y demostración de la lightboard antes de ser entregada" ancho={220} /> -->
+            </div>
+		</div>
+		<div class="proyecto">
+			<TextH3 texto="Proyecto Lampro-USA" />
+			<Parrafo align="center">
+				Proyecto liderado por Benjamín Luna para Lampro-USA, Latinamerican
+				Magister Program donde la pizarra se ocupa para clases en línea para
+				universidades extrajeras
+			</Parrafo>
+			<div class="listaDeVideos">
+				<LightBoardModal src={ProyectLampro1} alt="Escribiendo en la LightBoard" ancho={300} />
+				<LightBoardModal src={ProyectLampro2} alt="Foto de entrega de la LightBoard" ancho={300} />
+				<LightBoardModal src={ProyectLampro3} alt="Foto de entrega de la LightBoard sin luz" ancho={300} />
+			</div>
+		</div>
+		<div class="proyecto">
+			<TextH3 texto="Proyecto Geomesura Usach" />
+			<Parrafo align="center">
+				Proyecto liderado por Rene Garrido para el Departamento de Ingeniería
+				Geoespacial y Ambiental donde la esta pizarra de luz se ocupa para los
+				programas educativos remotos
+			</Parrafo>
+			<div class="listaDeVideos">
+				<LightBoardModal src={ProyectGeomesura1} alt="Rene Garrido en la Usach con la Lightboard" ancho={300} />
+				<LightBoardModal src={ProyectGeomesura2} alt="Rene Garrido en la Usach con la Lightboard" ancho={300} />
+				<LightBoardModal src={ProyectGeomesura3} alt="Rene Garrido en la Usach con la Lightboard" ancho={300} />
+				<LightBoardModal src={ProyectGeomesura4} alt="en la Usach Rene Garrido y sus alumnos con la Lightboard" ancho={300} />
+				<LightBoardModal src={ProyectGeomesura5} alt="Rene Garrido en grabaciones con la Lightboard en Geomesura en la Usach" ancho={300} />
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.listaDeProyectos {
+		margin: 50px 0;
+		display: flex;
+		flex-direction: column;
+		gap: 90px;
+		align-items: center;
+	}
+	.proyecto {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.listaDeVideos {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        min-width: 1000px;
+        /* height: auto; */
+    }
+</style>
