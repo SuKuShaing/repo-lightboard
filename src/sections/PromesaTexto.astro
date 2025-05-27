@@ -1,2 +1,66 @@
-Promesa Texto
-<h1>Hola</h1>
+---
+import Acordeon from "@/components/Acordeon.astro";
+import TextH2 from "@/components/TextH2.astro";
+import Parrafo from "@/components/Parrafo.astro";
+---
+
+<section>
+	<TextH2 texto="Beneficios de la Pizarra de Luz" />
+	<div class="contenedorDesplegables">
+		<Acordeon
+			titulo="Mayor atención y concentración de los estudiantes"
+			name="PromesaTexto"
+			open
+		>
+			<Parrafo align="center">
+				La lightboard permite que el profesor escriba y dibuje con marcadores
+				fluorescentes sobre un vidrio iluminado, creando la ilusión de que las
+				letras y gráficos flotan frente a los estudiantes, lo que resulta
+				visualmente atractivo y capta mejor la atención
+			</Parrafo>
+		</Acordeon>
+		<Acordeon titulo="Contacto visual directo" name="PromesaTexto">
+			<Parrafo align="center">
+				A diferencia de otras herramientas, no le das la espalda al estudiante,
+				el docente puede mirar directamente a la cámara mientras escribe,
+				manteniendo el contacto visual con los estudiantes, lo que mejora la
+				conexión y la comunicación durante la clase
+			</Parrafo>
+		</Acordeon>
+		<Acordeon
+			titulo="Versatilidad en la presentación del contenido"
+			name="PromesaTexto"
+		>
+			<Parrafo align="center">
+				Permite exponer temas con gráficos, diagramas y explicaciones a mano
+				alzada, facilitando la comprensión de conceptos complejos
+			</Parrafo>
+		</Acordeon>
+		<Acordeon
+			titulo="Innovación y modernidad en la enseñanza"
+			name="PromesaTexto"
+		>
+			<Parrafo align="center">
+				El uso de la lightboard representa un avance tecnológico que mejora la
+				experiencia de aprendizaje virtual y puede motivar a los estudiantes al
+				ofrecer una forma novedosa de recibir clases
+			</Parrafo>
+		</Acordeon>
+	</div>
+</section>
+
+<style>
+	.contenedorDesplegables {
+		display: flex;
+		flex-direction: column;
+		margin-top: 50px;
+        gap: clamp(10px, 6.36px + 1.136vw, 20px);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		max-width: 900px;
+		margin: 0 auto;
+	}
+</style>

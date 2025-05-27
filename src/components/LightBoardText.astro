@@ -1,4 +1,12 @@
-<div>
+---
+interface Props {
+	desplegable: string;
+}
+
+const { desplegable } = Astro.props;
+---
+
+<div style={desplegable == "arriba" ? "border-radius: 0px 0px 15px 15px" : ""}>
 	<slot />
 </div>
 

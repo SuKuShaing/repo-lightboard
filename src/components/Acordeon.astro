@@ -1,0 +1,71 @@
+---
+import LightBoardText from "./LightBoardText.astro";
+import TextH3 from "./TextH3.astro";
+
+interface Props {
+	titulo: string;
+	open?: boolean;
+    name?: string;
+}
+
+const { titulo, open, name = '' } = Astro.props;
+---
+
+<details open={open} name={name}>
+	<summary>
+		<TextH3 texto={titulo} />
+	</summary>
+	<LightBoardText desplegable={"arriba"}>
+		<slot />
+	</LightBoardText>
+</details>
+
+<style>
+    :root {
+        interpolate-size: allow-keywords; /* necesario para el despliegue suave */
+    }
+
+	details {
+		border-radius: 15px;
+        overflow: hidden; /* necesario para el despliegue suave */
+	}
+
+    details::details-content { /* necesario para el despliegue suave */
+        block-size: 0;
+        transition: 
+            block-size 1s,
+            content-visibility 1s;
+        transition-behavior: allow-discrete;
+    }
+    details[open]::details-content { /* necesario para el despliegue suave */
+        block-size: auto;
+    }
+
+	summary {
+		cursor: pointer;
+		border-radius: 15px;
+		border: 1px solid rgba(153, 153, 153, 0.3);
+		background: linear-gradient(
+			232deg,
+			rgba(255, 255, 255, 0.2) -8.36%,
+			rgba(139, 139, 139, 0.16) 111.4%
+		);
+		background-blend-mode: plus-lighter;
+		box-shadow: -5px 5px 12px 0px rgba(0, 0, 0, 0.5);
+		backdrop-filter: blur(20px);
+		padding: clamp(10px, 1% + 10px, 15px);
+		transition: all ease-in-out;
+	}
+    
+    details:not([open]) summary {
+        transition-delay: 0.8s;
+        transition-duration: 0.3s;
+    }
+    
+	details[open] summary {
+        border: 1px solid rgba(153, 153, 153, 0.3);
+		border-radius: 15px 15px 0px 0px;
+        transition-delay: 0s;
+        transition-duration: 0.1s;
+	}
+</style>

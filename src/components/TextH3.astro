@@ -6,16 +6,17 @@ interface Props {
 const { texto } = Astro.props;
 ---
 
-<h2>{texto}</h2>
+<h3>{texto}</h3>
 
 <style>
-	h2 {
+	h3 {
 		text-align: center;
-		font-size: clamp(3.5rem, 2.273rem + 2.273vw, 5rem); /* min a los 320 y max a los 1200 px */
+		font-size: clamp(2rem, 1.273rem + 2.273vw, 4rem); /* min a los 320 y max a los 1200 px */
 		font-style: normal;
 		font-weight: 900;
-		/* line-height: 78px; 156% */
-		letter-spacing: 1px;
+		line-height: clamp(2rem, 1.091rem + 2.841vw, 4.5rem);
+		letter-spacing: 0.5px;
+
 
 		background: linear-gradient(
 			252deg,

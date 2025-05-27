@@ -1,0 +1,29 @@
+---
+interface Props {
+    align: string;
+}
+
+const { align = 'left' } = Astro.props;
+---
+
+<p style={`text-align: ${align};`}>
+	<slot />
+</p>
+
+<style>
+	p {
+		font-size: clamp(1.8rem, 1.364rem + 1.364vw, 3rem);
+		font-weight: 600;
+		line-height: clamp(2rem, 1.636rem + 1.136vw, 3rem);
+		letter-spacing: 0.4px;
+
+		background: linear-gradient(
+			252deg,
+			rgba(255, 255, 255, 0.9) 10.23%,
+			rgba(255, 255, 255, 0.72) 112.32%
+		);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+</style>
