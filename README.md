@@ -7,8 +7,12 @@
 - **Frontend**: Astro, CSS puro
 - **Despliegue**: Cloudflare Pages
 
-## To Do
+## Por hacer
 
-- [ ] Animar que se muevan las card de la promesa visual y las imágenes de proyectos (hacerlo un componente)
+- [ ] Animar las card de la promesa visual, que se muevan y las imágenes de proyectos (hacerlo un componente)
 - [ ] Colocar los videos y la flecha en la sección de promesa visual
 - [ ] que al presionar el mail de sebastian@lightboard.cl se copie al portapapeles
+
+### Por hacer (opcionales)
+- [ ] Poder pasar y ver la siguiente card de la promesa visual con el teclado o una flecha
+- [ ] Colocar la tipografía al mail y a la página web
