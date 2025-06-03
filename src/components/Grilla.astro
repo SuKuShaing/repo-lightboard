@@ -1,0 +1,72 @@
+<div class="grid-background"></div>
+
+<style>
+	:root {
+		--grilla-ancho: 80px;
+    }
+
+	@keyframes bg-scrolling-reverse {
+		100% {
+			background-position: var(--grilla-ancho) var(--grilla-ancho);
+		}
+	}
+
+	@keyframes bg-scrolling {
+		0% {
+			background-position: var(--grilla-ancho) var(--grilla-ancho);
+		}
+	}
+
+	.grid-background {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		background-color: transparent;
+		background-image: linear-gradient(
+				rgba(255, 255, 255, 0.1) 1px,
+				transparent 1px
+			),
+			linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+		background-size: var(--grilla-ancho) var(--grilla-ancho);
+		animation: bg-scrolling-reverse 15s infinite;
+		animation-timing-function: linear;
+	}
+
+	.grid-background::before,
+	.grid-background::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		width: 40%; /* Controla que tanto se expande el gradiente que oculta la grilla */
+		height: 100%;
+		pointer-events: none;
+	}
+
+	.grid-background::before {
+		left: 0;
+		background: linear-gradient(to right, rgba(4, 3, 14, 1), transparent);
+	}
+
+	.grid-background::after {
+		right: 0;
+		background: linear-gradient(to left, rgba(11, 8, 36, 1), transparent);
+	}
+
+	#dos {
+		background-color: rgb(4, 3, 14);
+	}
+
+	@media (width < 600px) {
+		:root {
+			--grilla-ancho: 40px;
+		}
+
+		.grid-background::before,
+		.grid-background::after {
+			width: 30%;
+		}
+	}
+</style>
