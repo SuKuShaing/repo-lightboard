@@ -6,12 +6,13 @@ interface Props {
 	src: ImageMetadata;
 	alt: string;
 	ancho: number;
+	clases?: string;
 }
 
-const { src, alt, ancho } = Astro.props;
+const { src, alt, ancho, clases } = Astro.props;
 ---
 
-<div style={`max-width: ${ancho}px;`}>
+<div class={`${clases}`} style={`max-width: ${ancho}px;`}>
 	<Image
 		src={src}
 		alt={alt}

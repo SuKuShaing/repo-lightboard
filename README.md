@@ -14,6 +14,7 @@
 - [ ] Animar las card de la promesa visual, que se muevan y las imágenes de proyectos (hacerlo un componente)
 - [ ] Colocar los videos y la flecha en la sección de promesa visual
 - [ ] que al presionar el mail de sebastian@lightboard.cl se copie al portapapeles
+- [ ] Revisar por qué el sitemap no está funcionando
 
 ### Por hacer (opcionales)
 - [ ] _Poder pasar y ver la siguiente card de la promesa visual con el teclado o una flecha_

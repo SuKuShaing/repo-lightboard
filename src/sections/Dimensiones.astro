@@ -1,1 +1,75 @@
-Dimensiones
+---
+import LightBoardImg from "@/components/LightBoardImg.astro";
+import Parrafo from "@/components/Parrafo.astro";
+import TextH2 from "@/components/TextH2.astro";
+import TextH3 from "@/components/TextH3.astro";
+
+import lightIsoLimpio from "@imgs/dimensiones/Lightboard isometrico limpio.jpg";
+import lightIsoLineas from "@imgs/dimensiones/Lightboard isometrico con lineas.jpg";
+import lightFrontLimpio from "@imgs/dimensiones/Lightboard frontal limpio.jpg";
+import lightFrontLineas from "@imgs/dimensiones/Lightboard frontal con lineas.jpg";
+---
+
+<section>
+	<TextH2 texto="Dimensiones" />
+	<Parrafo align="center">
+		Las dimensiones totales de la lightboard es de 2.3 mt de ancho por 1.5 mt de
+		alto del triangulo base, más el marco de la pantalla que es de 1.3 mt, y la
+		pantalla transparente usable es de 2 mt de ancho por 1.2 de alto
+	</Parrafo>
+	<div class="imagenesHover">
+		<div class="img_Hover img_Hover_A">
+			<LightBoardImg
+				clases="A1 img_A img_1"
+				src={lightIsoLimpio}
+				alt="Imagen isometrica del plano de una lightboard"
+				ancho={500}
+			/>
+			<LightBoardImg
+				clases="A2  img_A img_2"
+				src={lightIsoLineas}
+				alt="Imagen isometrica del plano de una lightboard con lineas que tienen las dimensiones"
+				ancho={500}
+			/>
+		</div>
+		<div class="img_Hover img_Hover_B">
+			<LightBoardImg
+				clases="B1 img_B img_1"
+				src={lightFrontLimpio}
+				alt="Imagen frontal del plano de una lightboard"
+				ancho={500}
+			/>
+			<LightBoardImg
+				clases="B2 img_B img_2"
+				src={lightFrontLineas}
+				alt="Imagen frontal del plano de una lightboard con lineas que tienen las dimensiones"
+				ancho={500}
+			/>
+		</div>
+	</div>
+	<div>
+		<TextH3 texto="Materiales adicionales que se entregan en la compra" />
+		<Parrafo align="center">
+			Se entregará en conjunto con la lightboard, un telón negro, pinzas de
+			agarre para el telón, los plumones de Neon, alcohol isopropílico y un paño
+			de microfibra
+		</Parrafo>
+	</div>
+</section>
+
+<style>
+	.imagenesHover {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		place-items: center;
+		gap: 20px;
+		margin: 70px 0;
+	}
+	
+	@media (width < 700px) {
+		.imagenesHover {
+			grid-template-columns: 1fr;
+			margin: 50px 0;
+		}
+	}
+</style>
