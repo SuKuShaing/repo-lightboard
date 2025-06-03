@@ -105,8 +105,7 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 	body {
 		background:
 			linear-gradient(180deg, #0b0824, transparent 90%) no-repeat,
-			/* radiente lineal principal */ 
-			linear-gradient(90deg, #04030e, #0b0824); /* radiente lineal principal */
+			/* radiente lineal principal */ linear-gradient(90deg, #04030e, #0b0824); /* radiente lineal principal */
 		background-size:
 			100% 10vh,
 			100% 100%; /* El radial ocupa el 10% de la pantalla */
@@ -150,13 +149,12 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 	.img_Hover_B:hover > .img_1 {
 		display: none;
 	}
-
 </style>
 
 <script>
-	//////////////////////////////////// 
+	////////////////////////////////////
 	/// Apertura y cierre de modales ///
-	//////////////////////////////////// 
+	////////////////////////////////////
 	document.addEventListener("DOMContentLoaded", () => {
 		let scrollY = 0;
 
@@ -208,13 +206,17 @@ import LineasDeLuz from "@/components/LineasDeLuz.astro";
 		});
 	});
 
-	/////////////////////////////////////////////////// 
+	///////////////////////////////////////////////////
 	///// cada 3 seg cambio de img en dimensiones /////
-	/////////////////////////////////////////////////// 
+	///////////////////////////////////////////////////
 	/* Cada 3 seg que las imágenes cambien */
 	setInterval(() => {
-		const img1 = document.querySelectorAll(".img_1") as NodeListOf<HTMLImageElement>;
-		const img2 = document.querySelectorAll(".img_2") as NodeListOf<HTMLImageElement>;
+		const img1 = document.querySelectorAll(
+			".img_1"
+		) as NodeListOf<HTMLImageElement>;
+		const img2 = document.querySelectorAll(
+			".img_2"
+		) as NodeListOf<HTMLImageElement>;
 
 		img1.forEach((img) => {
 			img.style.display = "none";
