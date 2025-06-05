@@ -1,1 +1,38 @@
-Footer
+---
+import Parrafo from "@/components/Parrafo.astro";
+import LightBoardText from "@components/LightBoardText.astro";
+---
+
+<footer>
+	<LightBoardText>
+		<p>Sitio web desarrollado por Sebastián Sanhueza Tapia</p>
+	</LightBoardText>
+</footer>
+
+<style>
+    footer {
+        display: grid;
+        place-items: center;
+        max-width: 800px;
+    }
+
+	p {
+        text-align: center;
+        
+		font-size: clamp(1.2rem, 0.909rem + 0.909vw, 2rem);
+		font-weight: 600;
+		line-height: clamp(2rem, 1.636rem + 1.136vw, 3rem);
+		/* letter-spacing: 0.4px; */
+
+		background: linear-gradient(
+			252deg,
+			rgba(255, 255, 255, 0.9) 10.23%,
+			rgba(255, 255, 255, 0.72) 112.32%
+		);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+        
+        margin: 0;
+	}
+</style>
