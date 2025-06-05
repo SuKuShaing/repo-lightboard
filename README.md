@@ -9,13 +9,14 @@
 
 ## Por hacer
 
-- [ ] Reparar el espaciado entre las secciones
-- [ ] Hacer le menú funcional
+- [X] Reparar el espaciado entre las secciones
+- [x] Hacer le menú funcional
 - [ ] Hacer que el menú sea responsive
 - [ ] Animar las card de la promesa visual, que se muevan y las imágenes de proyectos (hacerlo un componente)
 - [ ] Colocar los videos y la flecha en la sección de promesa visual
 - [ ] que al presionar el mail de sebastian@lightboard.cl se copie al portapapeles
 - [ ] Reparar la flecha del hero
+- [ ] Hacer las lines de luz
 - [ ] Revisar por qué el sitemap no está funcionando
 
 ### Por hacer (opcionales)
