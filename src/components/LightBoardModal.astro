@@ -38,7 +38,7 @@ const id = modalId ?? `dialog-${Math.random().toString(36).slice(2, 10)}`;
 	dialog {
 		margin: auto;
 		background-color: transparent;
-		position: relative; /* Para que el botón se posicione respecto al dialog */
+		position: fixed; /* Para que el botón se posicione al medio según el navegador */
 		overflow: visible;
 		opacity: 0;
 		transition: all 0.3s allow-discrete;

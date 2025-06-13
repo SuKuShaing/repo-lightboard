@@ -175,19 +175,19 @@ import Grilla from "@/components/Grilla.astro";
 
 			// Abrir modal al hacer click en la imagen
 			openBtn.addEventListener("click", () => {
-				scrollY = window.scrollY;
-				document.body.style.position = "fixed";
-				document.body.style.top = `-${scrollY}px`;
-				document.body.style.width = "100%";
-				document.body.style.background = "#04030e";
-				document.documentElement.style.overflow = "hidden";
+				// scrollY = window.scrollY;
+				// document.body.style.position = "fixed";
+				// document.body.style.top = `-${scrollY}px`;
+				// document.body.style.width = "100%";
+				// document.body.style.background = "#04030e";
+				// document.documentElement.style.overflow = "hidden";
 				dialog.showModal();
 			});
 
 			// Cerrar modal al hacer click en el botón de cerrar
 			const closeBtn = dialog.querySelector(".cerrar-modal");
 			closeBtn?.addEventListener("click", (e) => {
-				e.stopPropagation();
+				// e.stopPropagation();
 				dialog.close();
 			});
 
@@ -206,12 +206,12 @@ import Grilla from "@/components/Grilla.astro";
 
 			// Restaurar scroll al cerrar el modal
 			dialog.addEventListener("close", () => {
-				document.body.style.position = "";
-				document.body.style.top = "";
-				document.body.style.width = "";
-				document.body.style.background = "";
-				document.documentElement.style.overflow = "";
-				window.scrollTo(0, scrollY);
+				// document.body.style.position = "";
+				// document.body.style.top = "";
+				// document.body.style.width = "";
+				// document.body.style.background = "";
+				// document.documentElement.style.overflow = "";
+				// window.scrollTo(0, scrollY);
 			});
 		});
 	});
