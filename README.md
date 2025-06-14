@@ -24,5 +24,6 @@
 
 ### Por hacer (opcionales)
 - [ ] _Colocar la tipografía al mail y a la página web_
+- [ ] _Colocar las viewTransitions suaves en los modales_
 - [ ] _Colocarle un ruido a la transparencia de las lightboard_
 - [ ] _Poder pasar y ver la siguiente card de la promesa visual con el teclado o una flecha_
