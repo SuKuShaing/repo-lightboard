@@ -1,4 +1,5 @@
 ---
+import LightBoardText from "@/components/LightBoardText.astro";
 import Parrafo from "@/components/Parrafo.astro";
 import TextH2 from "@/components/TextH2.astro";
 import TextH3 from "@/components/TextH3.astro";
@@ -14,17 +15,24 @@ import TextH3 from "@/components/TextH3.astro";
 				cada pedido
 			</Parrafo>
 			<ul>
-				<Parrafo align="center">
-					&#8226; Paso 1: Pedir la cotización especificando la región y comuna
-					en la cual se debe realizar la entrega
-				</Parrafo>
-				<Parrafo align="center">
-					&#8226; Paso 2: te respondemos la cotización
-				</Parrafo>
-				<Parrafo align="center">
-					&#8226; Paso 3: una vez aceptada la cotización se debe pagar al menos
-					el 50% del servicio, y el otro 50% se paga posterior a la entrega
-				</Parrafo>
+				<LightBoardText>
+					<Parrafo align="center">
+						&#8226; <span>Paso 1 :</span> Pedir la cotización especificando la región y comuna
+						en la cual se debe realizar la entrega
+					</Parrafo>
+				</LightBoardText>
+				<LightBoardText>
+					<Parrafo align="center">
+						&#8226; <span>Paso 2 :</span> te respondemos la cotización
+					</Parrafo>
+				</LightBoardText>
+				<LightBoardText>
+					<Parrafo align="center">
+						&#8226; <span>Paso 3 :</span> una vez aceptada la cotización se debe
+						pagar al menos el 50% del servicio, y el otro 50% se paga
+						posterior a la entrega
+					</Parrafo>
+				</LightBoardText>
 			</ul>
 			<Parrafo align="center">
 				Entregamos una Boleta honorarios por el total del monto cotizado
@@ -40,10 +48,33 @@ import TextH3 from "@/components/TextH3.astro";
 
 	.textos {
 		margin-top: 50px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.textos span {
+		font-size: clamp(1.8rem, 1.364rem + 1.364vw, 3rem);
+		font-weight: 800;
+		line-height: clamp(2rem, 1.636rem + 1.136vw, 3rem);
+		letter-spacing: 0.4px;
+
+		background: linear-gradient(
+			252deg,
+			rgba(255, 255, 255, 0.9) 10.23%,
+			rgba(255, 255, 255, 0.72) 112.32%
+		);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
 
 	ul {
-		margin: 90px 0;
+		margin: 40px 0;
+		max-width: 1000px;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
 	}
 
 	@media (width < 600px) {
@@ -52,11 +83,12 @@ import TextH3 from "@/components/TextH3.astro";
 		}
 
 		.textos {
-			margin-top: 30px;
+			margin-top: 10px;
 		}
 
 		ul {
 			margin: 40px 0;
+			gap: 10px;
 		}
 	}
 </style>
