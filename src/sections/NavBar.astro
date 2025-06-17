@@ -18,12 +18,12 @@ import Logo from "@svgs/logo-lightboard.svg";
 	</a>
 	<nav>
 		<label for="menu-toggle" class="menu-toggle">
-			<button>
+			<input type="checkbox" id="menu-toggle" />
+			<button type="button" onclick="document.getElementById('menu-toggle').checked = !document.getElementById('menu-toggle').checked">
 				<div></div>
 				<div></div>
 				<div></div>
 			</button>
-			<input type="checkbox" id="menu-toggle" />
 		</label>
 		{menuItems.map(({ name, href }) => <a href={href}>{name}</a>)}
 	</nav>
@@ -93,7 +93,6 @@ import Logo from "@svgs/logo-lightboard.svg";
 			display: block;
 		}
 
-		nav label input,
 		nav a {
 			display: none;
 		}
@@ -118,19 +117,19 @@ import Logo from "@svgs/logo-lightboard.svg";
 			transform-origin: left;
 		}
 
-		nav label button:hover {
+		nav label input:checked ~  button {
 			transform: translateX(5px);
 		}
 
-		nav label button:hover div:first-child {
+		nav label input:checked ~ button div:first-child {
 			transform: rotate(45deg);
 		}
 		
-		nav label button:hover div:nth-child(2) {
+		nav label input:checked ~ button div:nth-child(2) {
 			opacity: 0;
 		}
 		
-		nav label button:hover div:last-child {
+		nav label input:checked ~ button div:last-child {
 			transform: rotate(-45deg);
 		}
 	}
