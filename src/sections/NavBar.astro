@@ -17,6 +17,10 @@ import Logo from "@svgs/logo-lightboard.svg";
 		<Logo class="logo-svg" />
 	</a>
 	<nav>
+		<label for="menu-toggle" class="menu-toggle">
+			menu
+			<input type="checkbox" id="menu-toggle" />
+		</label>
 		{menuItems.map(({ name, href }) => <a href={href}>{name}</a>)}
 	</nav>
 </header>
@@ -57,19 +61,28 @@ import Logo from "@svgs/logo-lightboard.svg";
 		background-blend-mode: plus-lighter;
 		box-shadow: -5px 5px 12px 0px rgba(0, 0, 0, 0.5);
 		backdrop-filter: blur(5px);
+	}
 
-		a {
-			color: var(--blanco-text);
-			text-decoration: none;
-			font-size: clamp(2.5rem, 0rem + 2.5vw, 3rem); /* entre 1000 y 1200 px */
-			transition: all 0.25s ease-in-out;
+	nav a {
+		color: var(--blanco-text);
+		text-decoration: none;
+		font-size: clamp(2.5rem, 0rem + 2.5vw, 3rem); /* entre 1000 y 1200 px */
+		transition: all 0.25s ease-in-out;
 
-			&:hover {
-				text-shadow:
-					0 0 10px rgba(255, 255, 255, 0.5),
-					0 0 20px rgba(255, 255, 255, 0.5);
-			}
-		}
+	}
+	
+	nav a:hover {
+		text-shadow:
+		0 0 10px rgba(255, 255, 255, 0.5),
+		0 0 20px rgba(255, 255, 255, 0.5);
+	}
+
+	nav .menu-toggle {
+		display: none;
+	}
+
+	nav .menu-toggle input {
+		display: none;
 	}
 
 	@media (width < 950px) {
