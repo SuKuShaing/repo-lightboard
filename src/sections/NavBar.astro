@@ -17,13 +17,11 @@ import Logo from "@svgs/logo-lightboard.svg";
 		<Logo class="logo-svg" />
 	</a>
 	<nav
-	onclick="document.getElementById('menu-toggle').checked = !document.getElementById('menu-toggle').checked"
+		onclick="document.getElementById('menu-toggle').checked = !document.getElementById('menu-toggle').checked"
 	>
 		<label for="menu-toggle" class="menu-toggle">
 			<input type="checkbox" id="menu-toggle" />
-			<button
-				type="button"
-			>
+			<button type="button">
 				<div></div>
 				<div></div>
 				<div></div>
@@ -143,6 +141,7 @@ import Logo from "@svgs/logo-lightboard.svg";
 		/* Menu items */
 		nav {
 			z-index: 10;
+			border: 1px solid rgba(153, 153, 153, 0.35);
 			position: absolute;
 			top: 15px;
 			right: 0px;
@@ -178,10 +177,12 @@ import Logo from "@svgs/logo-lightboard.svg";
 </style>
 
 <script>
-	document.addEventListener('click', (event) => {
-		const nav = document.querySelector('nav') as HTMLElement;
-		const menuToggle = document.getElementById('menu-toggle') as HTMLInputElement;
-		
+	document.addEventListener("click", (event) => {
+		const nav = document.querySelector("nav") as HTMLElement;
+		const menuToggle = document.getElementById(
+			"menu-toggle"
+		) as HTMLInputElement;
+
 		// Si el menú está abierto (checkbox está checked)
 		if (menuToggle.checked) {
 			// Verifica si el clic fue fuera del nav
