@@ -41,6 +41,7 @@ import Logo from "@svgs/logo-lightboard.svg";
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		position: relative;
 	}
 
 	.logo {
@@ -105,7 +106,7 @@ import Logo from "@svgs/logo-lightboard.svg";
 		nav label button {
 			display: flex;
 			flex-direction: column;
-			width: 25px;
+			width: 25.3px;
 			height: 20px;
 			border: 0;
 			background: transparent;
@@ -142,9 +143,9 @@ import Logo from "@svgs/logo-lightboard.svg";
 		/* Menu items */
 		nav {
 			z-index: 10;
-			position: fixed;
-			top: 34px;
-			right: 20px;
+			position: absolute;
+			top: 15px;
+			right: 0px;
 			display: flex;
 			flex-direction: column;
 			align-items: end;
@@ -160,8 +161,8 @@ import Logo from "@svgs/logo-lightboard.svg";
 		nav:has(input:checked) {
 			background: linear-gradient(
 				232deg,
-				rgba(60, 60, 60, 0.2) -8.36%,
-				rgba(14, 14, 14, 0.3) 111.4%
+				rgba(188, 188, 188, 0.2) -8.36%,
+				rgba(88, 88, 88, 0.16) 111.4%
 			);
 			backdrop-filter: blur(20px);
 			height: 371px;
