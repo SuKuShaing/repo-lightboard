@@ -19,60 +19,120 @@ import ProyectGeomesura2 from "@imgs/Proyectos/Geomesura/Rene Garrido con la Lig
 import ProyectGeomesura3 from "@imgs/Proyectos/Geomesura/Rene Garrido con la Lightboard 3.jpg";
 import ProyectGeomesura4 from "@imgs/Proyectos/Geomesura/Rene Garrido y sus alumnos con la Lightboard.jpg";
 import ProyectGeomesura5 from "@imgs/Proyectos/Geomesura/Rene Garrido en grabaciones con la Lightboard.jpg";
+import ListaDeImagenes from "@/components/ListaDeImagenes.astro";
 ---
 
 <section id="proyectos">
 	<TextH2 texto="Proyectos Realizados" />
 	<div class="listaDeProyectos">
 		<div class="proyecto">
-			<TextH3 texto="Proyecto MBA Usach" />
-			<Parrafo align="center">
+			<TextH3 texto="Proyecto MBA Usach" padding="20px" />
+			<Parrafo align="center" padding="20px">
 				LightBoard entregada al Centro de estudios de postgrado y educación
 				continua de la Universidad de Santiago de Chile para sus clases online
 			</Parrafo>
-			<div class="listaDeImagenes">
-                <LightBoardModal src={ProyectUsach1} alt="Lightboard preparada para empaque y ser enviada" ancho={300} />
-				<LightBoardModal src={ProyectUsach2} alt="Lightboard empaquetada en el lugar de entrega" ancho={300} />
-				<LightBoardModal src={ProyectUsach3} alt="Prueba y demostración de la lightboard antes de ser entregada" ancho={300} />
-				<LightBoardModal src={ProyectUsach4} alt="Prueba y demostración de la lightboard antes de ser entregada" ancho={300} />
-				<!-- <LightBoardModal src={ProyectUsach5} alt="Prueba y demostración de la lightboard antes de ser entregada" ancho={220} /> -->
-            </div>
+			<ListaDeImagenes numSlides={4}>
+				<div class="slide">
+					<LightBoardModal src={ProyectUsach1} alt="Lightboard preparada para empaque y ser enviada" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectUsach2} alt="Lightboard empaquetada en el lugar de entrega" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectUsach3} alt="Prueba y demostración de la lightboard antes de ser entregada" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectUsach4} alt="Prueba y demostración de la lightboard antes de ser entregada" ancho={300} />
+				</div>
+				<!-- Duplicados -->
+				<div class="slide">
+					<LightBoardModal src={ProyectUsach1} alt="Lightboard preparada para empaque y ser enviada" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectUsach2} alt="Lightboard empaquetada en el lugar de entrega" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectUsach3} alt="Prueba y demostración de la lightboard antes de ser entregada" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectUsach4} alt="Prueba y demostración de la lightboard antes de ser entregada" ancho={300} />
+				</div>
+			</ListaDeImagenes>
 		</div>
 		<div class="proyecto">
-			<TextH3 texto="Proyecto Lampro-USA" />
-			<Parrafo align="center">
+			<TextH3 texto="Proyecto Lampro-USA" padding="20px" />
+			<Parrafo align="center" padding="20px">
 				Proyecto liderado por Benjamín Luna para Lampro-USA, Latinamerican
 				Magister Program donde la pizarra se ocupa para clases en línea para
 				universidades extrajeras
 			</Parrafo>
-			<div class="listaDeImagenes">
-				<LightBoardModal src={ProyectLampro1} alt="Escribiendo en la LightBoard" ancho={300} />
-				<LightBoardModal src={ProyectLampro2} alt="Foto de entrega de la LightBoard" ancho={300} />
-				<LightBoardModal src={ProyectLampro3} alt="Foto de entrega de la LightBoard sin luz" ancho={300} />
-			</div>
+			<ListaDeImagenes numSlides={3}>
+				<div class="slide">
+					<LightBoardModal src={ProyectLampro1} alt="Escribiendo en la LightBoard" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectLampro2} alt="Foto de entrega de la LightBoard" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectLampro3} alt="Foto de entrega de la LightBoard sin luz" ancho={300} />
+				</div>
+				<!-- Duplicados -->
+				<div class="slide">
+					<LightBoardModal src={ProyectLampro1} alt="Escribiendo en la LightBoard" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectLampro2} alt="Foto de entrega de la LightBoard" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectLampro3} alt="Foto de entrega de la LightBoard sin luz" ancho={300} />
+				</div>
+			</ListaDeImagenes>
 		</div>
 		<div class="proyecto">
-			<TextH3 texto="Proyecto Geomesura Usach" />
-			<Parrafo align="center">
+			<TextH3 texto="Proyecto Geomesura Usach" padding="20px" />
+			<Parrafo align="center" padding="20px">
 				Proyecto liderado por Rene Garrido para el Departamento de Ingeniería
 				Geoespacial y Ambiental donde la esta pizarra de luz se ocupa para los
 				programas educativos remotos
 			</Parrafo>
-			<div class="listaDeImagenes">
-				<LightBoardModal src={ProyectGeomesura1} alt="Rene Garrido en la Usach con la Lightboard" ancho={300} />
-				<LightBoardModal src={ProyectGeomesura2} alt="Rene Garrido en la Usach con la Lightboard" ancho={300} />
-				<LightBoardModal src={ProyectGeomesura3} alt="Rene Garrido en la Usach con la Lightboard" ancho={300} />
-				<LightBoardModal src={ProyectGeomesura4} alt="en la Usach Rene Garrido y sus alumnos con la Lightboard" ancho={300} />
-				<LightBoardModal src={ProyectGeomesura5} alt="Rene Garrido en grabaciones con la Lightboard en Geomesura en la Usach" ancho={300} />
-			</div>
+			<ListaDeImagenes numSlides={5}>
+				<div class="slide">
+					<LightBoardModal src={ProyectGeomesura1} alt="Rene Garrido en la Usach con la Lightboard" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectGeomesura2} alt="Rene Garrido en la Usach con la Lightboard" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectGeomesura3} alt="Rene Garrido en la Usach con la Lightboard" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectGeomesura4} alt="en la Usach Rene Garrido y sus alumnos con la Lightboard" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectGeomesura5} alt="Rene Garrido en grabaciones con la Lightboard en Geomesura en la Usach" ancho={300} />
+				</div>
+				<!-- Duplicados -->
+				<div class="slide">
+					<LightBoardModal src={ProyectGeomesura1} alt="Rene Garrido en la Usach con la Lightboard" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectGeomesura2} alt="Rene Garrido en la Usach con la Lightboard" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectGeomesura3} alt="Rene Garrido en la Usach con la Lightboard" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectGeomesura4} alt="en la Usach Rene Garrido y sus alumnos con la Lightboard" ancho={300} />
+				</div>
+				<div class="slide">
+					<LightBoardModal src={ProyectGeomesura5} alt="Rene Garrido en grabaciones con la Lightboard en Geomesura en la Usach" ancho={300} />
+				</div>
+			</ListaDeImagenes>
 		</div>
 	</div>
 </section>
 
 <style>
-	section {
-		padding: 0 20px;
-	}
 	.listaDeProyectos {
 		margin: 50px 0;
 		display: flex;

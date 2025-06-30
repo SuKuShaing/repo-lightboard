@@ -12,7 +12,9 @@
 - [X] Reparar el espaciado entre las secciones
 - [x] Hacer le menú funcional
 - [x] Hacer que el menú sea responsive
-- [ ] Animar las card de la promesa visual, que se muevan y las imágenes de proyectos (hacerlo un componente)
+- [x] Animar las card de la promesa visual, que se muevan y las imágenes de proyectos (hacerlo un componente)
+- [x] Que las imágenes de proyectos se muevan también
+- [x] Que las imágenes de Cómo se utiliza se muevan también
 - [ ] Reparar la flecha del hero
 - [ ] Hacer las lines de luz
 

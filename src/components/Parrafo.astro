@@ -1,16 +1,17 @@
 ---
 interface Props {
     align?: string;
+    padding?: string;
 }
 
-const { align = 'left' } = Astro.props;
+const { align = 'left', padding = '0' } = Astro.props;
 ---
 
 <p style={`text-align: ${align};`}>
 	<slot />
 </p>
 
-<style>
+<style define:vars={{ padding }}>
 	p {
 		font-size: clamp(1.8rem, 1.364rem + 1.364vw, 3rem);
 		font-weight: 600;
@@ -25,5 +26,6 @@ const { align = 'left' } = Astro.props;
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
+		padding: 0 var(--padding);
 	}
 </style>

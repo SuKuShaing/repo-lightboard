@@ -1,14 +1,15 @@
 ---
 interface Props {
 	texto: string;
+	padding?: string;
 }
 
-const { texto } = Astro.props;
+const { texto, padding = "0" } = Astro.props;
 ---
 
 <h3>{texto}</h3>
 
-<style>
+<style define:vars={{ padding }}>
 	h3 {
 		text-align: center;
 		font-size: clamp(2rem, 1.273rem + 2.273vw, 4rem); /* min a los 320 y max a los 1200 px */
@@ -26,5 +27,6 @@ const { texto } = Astro.props;
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
+		padding: 0 var(--padding);
 	}
 </style>

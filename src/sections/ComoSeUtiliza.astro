@@ -12,12 +12,13 @@ import imgUtilizar6 from "@imgs/comoUtilizar/Antes.jpg";
 import imgUtilizar7 from "@imgs/comoUtilizar/Despues.jpg";
 import TextH3 from "@/components/TextH3.astro";
 import Parrafo from "@/components/Parrafo.astro";
+import ListaDeImagenes from "@/components/ListaDeImagenes.astro";
 ---
 
 <section id="utilizar">
 	<TextH2 texto="Como se utiliza esta pizarra de luz" />
 	<div class="gridDeElementos">
-		<div class="listaDeImagenes">
+		<div class="listaDeImagenesDesktop">
 			<LightBoardModal
 				src={imgUtilizar1}
 				alt="Display de posicionamiento de la lightboard"
@@ -53,6 +54,59 @@ import Parrafo from "@/components/Parrafo.astro";
 				alt="imagen de Después de la edición"
 				ancho={400}
 			/>
+		</div>
+		<div class="listaDeImagenesMobile">
+			<ListaDeImagenes numSlides={7}>
+				<div class="slide">
+					<LightBoardModal
+						src={imgUtilizar1}
+						alt="Display de posicionamiento de la lightboard"
+						ancho={400}
+					/>
+				</div>
+				<div class="slide">
+					<LightBoardModal
+						src={imgUtilizar2}
+						alt="Display 3d de posicionamiento de la lightboard"
+						ancho={400}
+					/>
+				</div>
+				<div class="slide">
+					<LightBoardModal
+						src={imgUtilizar3}
+						alt="Ejemplo del posicionamiento de la lightboard"
+						ancho={400}
+					/>
+				</div>
+				<div class="slide">
+					<LightBoardModal
+						src={imgUtilizar4}
+						alt="Display de posicionamiento de la lightboard render"
+						ancho={400}
+					/>
+				</div>
+				<div class="slide">
+					<LightBoardModal
+						src={imgUtilizar5}
+						alt="Curva de edición de un video de lightboard"
+						ancho={400}
+					/>
+				</div>
+				<div class="slide">
+					<LightBoardModal
+						src={imgUtilizar6}
+						alt="imagen de Antes de la edición"
+						ancho={400}
+					/>
+				</div>
+				<div class="slide">
+					<LightBoardModal
+						src={imgUtilizar7}
+						alt="imagen de Después de la edición"
+						ancho={400}
+					/>
+				</div>
+			</ListaDeImagenes>
 		</div>
 		<div class="contenedorDesplegables">
 			<Acordeon titulo="Disposición de Elementos" name="ComoUtilizar" open>
@@ -107,22 +161,22 @@ import Parrafo from "@/components/Parrafo.astro";
 </section>
 
 <style>
-	section {
-		/* margin-top: 50px; */
-		padding: 0 20px;
-	}
 	.gridDeElementos {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 20px;
 		margin-top: 40px;
 	}
-	.listaDeImagenes {
+	.listaDeImagenesDesktop {
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
 		justify-content: center;
 		align-items: center;
+		padding: 0 0 0 20px;
+	}
+	.listaDeImagenesMobile {
+		display: none;
 	}
 	.contenedorDesplegables {
 		display: flex;
@@ -131,6 +185,7 @@ import Parrafo from "@/components/Parrafo.astro";
 		position: sticky;
 		top: 5px; /* o el valor que prefieras */
 		align-self: flex-start; /* asegura que no se estire en grid */
+		padding: 0 20px 0 0;
 	}
 
 	@media (width < 600px) {
@@ -138,8 +193,14 @@ import Parrafo from "@/components/Parrafo.astro";
 			grid-template-columns: 1fr;
 			grid-template-rows: auto 1fr;
 		}
-		.listaDeImagenes {
-			flex-direction:row;
+		.listaDeImagenesDesktop {
+			display: none;
+		}
+		.listaDeImagenesMobile {
+			display: block;
+		}
+		.contenedorDesplegables {
+			padding: 0 20px;
 		}
 	}
 </style>
