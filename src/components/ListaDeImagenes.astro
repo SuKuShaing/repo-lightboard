@@ -1,16 +1,96 @@
 ---
+interface Props {
+	numSlides: number;
+}
+
+const { numSlides } = Astro.props;
 ---
 
-<div>
-    <slot />
+<div class="s-slider">
+	<div class="s-slider-track">
+		<slot />
+	</div>
 </div>
 
-<style>
-	div {
+<style define:vars={{ numSlides }}>
+	:root {
+		--ancho-slide: 300px;
+	}
+	.s-slider {
+		max-width: 1200px;
+		width: 97dvw;
+		height: auto;
+		margin: auto;
+		overflow: hidden;
+		position: relative;
+		white-space: nowrap; /* Elimina el espacio entre los slides y los también los saltos de linea*/
+	}
+
+	.s-slider .s-slider-track {
 		display: flex;
-		gap: 20px;
-		justify-content: center;
+		/* (width of slide * numero de slides * 2) el 2 es porque están duplicada la lista de marcas para dar el efecto */
+		width: calc(var(--ancho-slide) * var(--numSlides) * 2);
 		align-items: center;
-		min-width: 1000px;
+		animation: scroll 60s linear infinite;
+		-webkit-animation: scroll 60s linear infinite;
+	}
+
+	.s-slider:before,
+	.s-slider:after {
+		position: absolute;
+		top: 0;
+		width: 100px; /* Ancho de la capa de degradación */
+		height: 100%;
+		content: "";
+		z-index: 2;
+	}
+
+	.s-slider::before {
+		left: 0;
+		background: linear-gradient(to left, rgba(255, 255, 255, 0), #04030e);
+	}
+
+	.s-slider:after {
+		right: 0;
+		background: linear-gradient(to right, rgba(255, 255, 255, 0), #0b0824);
+	}
+
+	.s-slider:hover .s-slider-track {
+		animation-play-state: paused;
+		-webkit-animation-play-state: paused;
+	}
+
+	@keyframes scroll {
+		0% {
+			-webkit-transform: translateX(0);
+			transform: translateX(0);
+		}
+		100% {
+			/* Dirección (-1 para izquierda, 1 para derecha) * ancho de la slide * numero de slides real */
+			transform: translateX(calc(-1 * var(--ancho-slide) * var(--numSlides)));
+			-webkit-transform: translateX(
+				calc(-1 * var(--ancho-slide) * var(--numSlides))
+			);
+		}
+	}
+
+	@media (width < 600px) {
+		:root {
+			--ancho-slide: 250px;
+		}
+		.s-slider {
+			width: 96dvw;
+		}
+	}
+</style>
+
+<style is:global>
+	.s-slider .slide {
+		width: var(--ancho-slide); /* Ancho de la imagen */
+		padding: 20px; /* Padding de la imagen */
+	}
+
+	.s-slider .slide img {
+		width: 100%; /* Ancho de la imagen */
 	}
 </style>
