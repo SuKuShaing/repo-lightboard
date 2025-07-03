@@ -78,8 +78,14 @@ const { numSlides } = Astro.props;
 		:root {
 			--ancho-slide: 250px;
 		}
+		
 		.s-slider {
 			width: 96dvw;
+		}
+
+		.s-slider:before,
+		.s-slider:after {
+			width: 30px; /* Ancho de la capa de degradación */
 		}
 	}
 </style>

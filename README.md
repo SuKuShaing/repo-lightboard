@@ -16,6 +16,7 @@
 - [x] Que las imágenes de proyectos se muevan también
 - [x] Que las imágenes de Cómo se utiliza se muevan también
 - [x] sacar la carga Lazy de la primera imagen
+- [x] variar el degrade en slider de imágenes para que en mobile sea menos ancho 
 - [ ] Reparar la flecha del hero
 - [ ] Hacer las lines de luz
 
