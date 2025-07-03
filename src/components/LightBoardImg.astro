@@ -7,9 +7,10 @@ interface Props {
 	alt: string;
 	ancho: number;
 	clases?: string;
+	carga?: "lazy" | "eager";
 }
 
-const { src, alt, ancho, clases } = Astro.props;
+const { src, alt, ancho, clases, carga = "lazy" } = Astro.props;
 ---
 
 <div class={`${clases}`} style={`max-width: ${ancho}px;`}>
@@ -19,6 +20,7 @@ const { src, alt, ancho, clases } = Astro.props;
 		widths={[600, 1000, 2000, 3000, src.width]}
 		sizes={`(max-width: 400px) 600px, (max-width: 700px) 1000px, (max-width: 1600px) 2000px, (max-width: 2400px) 3000px, ${src.width}px`}
 		class="Img"
+		loading={carga}
 	/>
 </div>
 
