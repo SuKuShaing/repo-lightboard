@@ -17,8 +17,8 @@
 - [x] Que las imágenes de Cómo se utiliza se muevan también
 - [x] sacar la carga Lazy de la primera imagen
 - [x] variar el degrade en slider de imágenes para que en mobile sea menos ancho 
-- [ ] Reparar la flecha del hero
-- [ ] Hacer las lines de luz
+- [x] Reparar la flecha del hero -> se reparó, pero no da blur al fondo, insalvable
+- [ ] Hacer las lines de luz, pls!!!!
 
 ## Por hacer
 - [ ] que al presionar el mail de sebastian@lightboard.cl se copie al portapapeles

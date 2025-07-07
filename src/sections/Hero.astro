@@ -22,7 +22,9 @@ import LightBoardModal from "@components/LightBoardModal.astro";
 	/> -->
 </div>
 <div id="Contacto" class="Flecha-abajo">
-	<FlechaAbajo class="SVG-FlechaAbajo" />
+	<a href="#Contacto">
+		<FlechaAbajo class="SVG-FlechaAbajo" />
+	</a>
 </div>
 
 <style>
@@ -43,7 +45,7 @@ import LightBoardModal from "@components/LightBoardModal.astro";
 	}
 
 	.SVG-FlechaAbajo {
-		backdrop-filter: blur(20px);
+		/* backdrop-filter: blur(20px); */
 		animation: rebote 1.2s infinite ease-in-out;
 		width: clamp(30px, 10vw, 53px);
 	}
