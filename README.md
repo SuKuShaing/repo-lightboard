@@ -18,10 +18,11 @@
 - [x] sacar la carga Lazy de la primera imagen
 - [x] variar el degrade en slider de imágenes para que en mobile sea menos ancho 
 - [x] Reparar la flecha del hero -> se reparó, pero no da blur al fondo, insalvable
+- [ ] Crear el mail de Andres@lightBoard.cl para que lleguen los mails
 - [ ] Hacer las lines de luz, pls!!!!
 
 ## Por hacer
-- [ ] que al presionar el mail de sebastian@lightboard.cl se copie al portapapeles
+- [ ] que al presionar el mail de Andres@lightBoard.cl se copie al portapapeles
 - [ ] Colocar los videos y la flecha en la sección de promesa visual
 - [x] Revisar por qué el sitemap no está funcionando, ahora está funcionando :D
 - [x] Reparar el desplazamiento al cerrar el modal
