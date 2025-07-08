@@ -7,9 +7,8 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
 	site: "https://lightboard.cl",
 	integrations: [
-		sitemap(),
 		sitemap({
-			xslURL: "/sitemap.xsl",
+			lastmod: new Date(),
 		}),
 	],
 });
