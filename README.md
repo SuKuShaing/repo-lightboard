@@ -18,7 +18,7 @@
 - [x] sacar la carga Lazy de la primera imagen
 - [x] variar el degrade en slider de imágenes para que en mobile sea menos ancho 
 - [x] Reparar la flecha del hero -> se reparó, pero no da blur al fondo, insalvable
-- [ ] Crear el mail de Andres@lightBoard.cl para que lleguen los mails
+- [x] Crear el mail de Andres@lightBoard.cl para que lleguen los mails
 - [ ] Hacer las lines de luz, pls!!!!
 
 ## Por hacer
