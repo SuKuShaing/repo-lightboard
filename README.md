@@ -23,7 +23,7 @@
 ## Por hacer
 - [ ] que al presionar el mail de sebastian@lightboard.cl se copie al portapapeles
 - [ ] Colocar los videos y la flecha en la sección de promesa visual
-- [ ] Revisar por qué el sitemap no está funcionando
+- [x] Revisar por qué el sitemap no está funcionando, ahora está funcionando :D
 - [x] Reparar el desplazamiento al cerrar el modal
 
 ### Por hacer (opcionales)
