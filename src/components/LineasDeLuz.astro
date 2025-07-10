@@ -1,0 +1,235 @@
+<canvas id="lienzo"></canvas>
+
+<style>
+	canvas {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		/* width: 100%; */
+		/* height: 100%; */
+		/* background-color: transparent; */
+        opacity: 1;
+	}
+</style>
+
+<script>
+	/*───────── una vez cargada la web se ejecute ─────────*/
+	function estoyListo() {
+		/*───────── CONFIGURACIÓN GENERAL ─────────*/
+		const BORDER_WIDTH = 10;                // grosor del borde color
+		const CORE_WIDTH = BORDER_WIDTH / 3;    // grosor núcleo blanco
+		const GLOW_BLUR = 20;                   // desenfoque del halo
+		const POINTS = 12;                      // puntos del cuerpo de la línea
+		const NUM_LINES = 5;                    // número de líneas a la vez
+		const SEGMENT_FRAC = 0.2;               // largo de la línea, fracción de segmento
+		const AMPLITUDE = 4;                    // amplitud de la onda
+		const SPEED_MIN = 0.00003;               // velocidad mínima de la línea, velocidad original 0.0001
+		const SPEED_MAX = 0.00010;               // velocidad máxima de la línea, velocidad original 0.0004
+		const NOISE_SPEED = 0.0002;              // velocidad del ruido, velocidad original 0.002
+
+		/* % de líneas que serán SOLO UNA curva Bézier */
+		const SINGLE_CHANCE = 0.6; // 60 % simples, 40 % dobles
+
+		const SIDES = ["left", "right", "top", "bottom"];
+		const palette = ["#0f0", "#f0f", "#f00", "#0ff", "#ff0", "#f80", "#fff", "#0004ff", "#8f00ff"];
+
+		/*───────── CANVAS ─────────*/
+		const canvas = document.getElementById("lienzo");
+		const ctx = canvas.getContext("2d");
+		const resize = () => {
+			canvas.width = innerWidth;
+			canvas.height = innerHeight;
+		};
+		addEventListener("resize", resize);
+		resize();
+
+		/*───────── PERLIN SIMPLE ─────────*/
+		const perm = new Uint8Array(512);
+		(() => {
+			const p = Uint8Array.from({ length: 256 }, (_, i) => i);
+			for (let i = 255; i; i--) {
+				const j = (Math.random() * (i + 1)) | 0;
+				[p[i], p[j]] = [p[j], p[i]];
+			}
+			for (let i = 0; i < 512; i++) perm[i] = p[i & 255];
+		})();
+		const fade = (t) => t * t * t * (t * (t * 6 - 15) + 10),
+			lerp = (a, b, t) => a + t * (b - a),
+			grad = (h, x, y) => (h & 1 ? -x : x) + (h & 2 ? -2 * y : 2 * y);
+		function perlin2D(x, y) {
+			const X = (x | 0) & 255,
+				Y = (y | 0) & 255,
+				xf = x - (x | 0),
+				yf = y - (y | 0),
+				u = fade(xf),
+				v = fade(yf),
+				aa = perm[X + perm[Y]],
+				ab = perm[X + perm[Y + 1]],
+				ba = perm[X + 1 + perm[Y]],
+				bb = perm[X + 1 + perm[Y + 1]],
+				x1 = lerp(grad(aa, xf, yf), grad(ba, xf - 1, yf), u),
+				x2 = lerp(grad(ab, xf, yf - 1), grad(bb, xf - 1, yf - 1), u);
+			return lerp(x1, x2, v);
+		}
+
+		/*───────── BÉZIER CÚBICA ─────────*/
+		const cubic = (P0, P1, P2, P3, t) => {
+			const u = 1 - t;
+			return {
+				x:
+					u * u * u * P0.x +
+					3 * u * u * t * P1.x +
+					3 * u * t * t * P2.x +
+					t * t * t * P3.x,
+				y:
+					u * u * u * P0.y +
+					3 * u * u * t * P1.y +
+					3 * u * t * t * P2.y +
+					t * t * t * P3.y,
+			};
+		};
+		const cubicDer = (P0, P1, P2, P3, t) => {
+			const u = 1 - t;
+			return {
+				x:
+					3 * u * u * (P1.x - P0.x) +
+					6 * u * t * (P2.x - P1.x) +
+					3 * t * t * (P3.x - P2.x),
+				y:
+					3 * u * u * (P1.y - P0.y) +
+					6 * u * t * (P2.y - P1.y) +
+					3 * t * t * (P3.y - P2.y),
+			};
+		};
+
+		/*───────── EVALUAR TRAZADOS ─────────*/
+		function evalCurve(line, t) {
+			if (line.simple) {
+				return cubic(line.A, line.B1, line.C1, line.D, t);
+			}
+			// doble
+			if (t < 0.5) {
+				return cubic(line.A, line.B1, line.C1, line.M, t * 2);
+			}
+			return cubic(line.M, line.B2, line.C2, line.D, (t - 0.5) * 2);
+		}
+		function evalDeriv(line, t) {
+			if (line.simple) {
+				return cubicDer(line.A, line.B1, line.C1, line.D, t);
+			}
+			if (t < 0.5) {
+				return cubicDer(line.A, line.B1, line.C1, line.M, t * 2);
+			}
+			return cubicDer(line.M, line.B2, line.C2, line.D, (t - 0.5) * 2);
+		}
+
+		/*───────── GENERAR LÍNEA ─────────*/
+		const pickSide = (ex) => {
+			const o = SIDES.filter((s) => s !== ex);
+			return o[(Math.random() * o.length) | 0];
+		};
+		const randOut = (s) =>
+			s === "left"
+				? { x: -0.1, y: Math.random() }
+				: s === "right"
+					? { x: 1.1, y: Math.random() }
+					: s === "top"
+						? { x: Math.random(), y: -0.1 }
+						: { x: Math.random(), y: 1.1 };
+		function initLine() {
+			const inS = pickSide(),
+				outS = pickSide(inS),
+				A = randOut(inS),
+				D = randOut(outS),
+				B1 = { x: Math.random(), y: Math.random() },
+				C1 = { x: Math.random(), y: Math.random() };
+			const simple = Math.random() < SINGLE_CHANCE;
+
+			/* puntos extra sólo si es doble curva */
+			const M = simple ? null : { x: Math.random(), y: Math.random() };
+			const B2 = simple ? null : { x: Math.random(), y: Math.random() };
+			const C2 = simple ? null : { x: Math.random(), y: Math.random() };
+
+			return {
+				simple,
+				A,
+				B1,
+				C1,
+				M,
+				B2,
+				C2,
+				D,
+				speed: SPEED_MIN + Math.random() * (SPEED_MAX - SPEED_MIN),
+				pts: Array.from({ length: POINTS }, (_, i) => ({
+					t: i / (POINTS - 1),
+					offset: Math.random() * 1000,
+				})),
+				color: palette[(Math.random() * palette.length) | 0],
+				u: -SEGMENT_FRAC * Math.random(),
+			};
+		}
+		const lines = Array.from({ length: NUM_LINES }, initLine);
+
+		/*───────── DIBUJO / ANIMACIÓN ─────────*/
+		let last = 0;
+		function draw(now) {
+			const dt = now - last;
+			last = now;
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+			lines.forEach((line) => {
+				line.u += line.speed * dt;
+				if (line.u > 1 + SEGMENT_FRAC) Object.assign(line, initLine());
+
+				const u0 = line.u - SEGMENT_FRAC,
+					u1 = line.u;
+				ctx.beginPath();
+				let px, py;
+				line.pts.forEach((p, i) => {
+					const tt = Math.max(0, Math.min(1, u0 + p.t * (u1 - u0)));
+					const Q = evalCurve(line, tt);
+					const d = evalDeriv(line, tt);
+					const dx = d.x * canvas.width,
+						dy = d.y * canvas.height,
+						L = Math.hypot(dx, dy) || 1,
+						nx = -dy / L,
+						ny = dx / L;
+					p.offset += dt * NOISE_SPEED;
+					const n = perlin2D(p.offset, i * 10) * AMPLITUDE,
+						X = Q.x * canvas.width + nx * n,
+						Y = Q.y * canvas.height + ny * n;
+					if (i === 0) ctx.moveTo(X, Y);
+					else {
+						const midX = (px + X) / 2,
+							midY = (py + Y) / 2;
+						ctx.quadraticCurveTo(px, py, midX, midY);
+					}
+					px = X;
+					py = Y;
+				});
+				ctx.lineTo(px, py);
+
+				/* borde coloreado + halo */
+				ctx.lineCap = "round";
+				ctx.lineJoin = "round";
+				ctx.lineWidth = BORDER_WIDTH;
+				ctx.strokeStyle = line.color;
+				ctx.shadowColor = line.color;
+				ctx.shadowBlur = GLOW_BLUR;
+				ctx.stroke();
+
+				/* núcleo blanco */
+				ctx.lineWidth = CORE_WIDTH;
+				ctx.shadowBlur = 0;
+				ctx.strokeStyle = "#fff";
+				ctx.stroke();
+			});
+
+			requestAnimationFrame(draw);
+		}
+		requestAnimationFrame(draw);
+	}
+
+	document.addEventListener("DOMContentLoaded", estoyListo);
+</script>
