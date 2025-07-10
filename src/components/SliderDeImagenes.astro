@@ -35,15 +35,15 @@ const { numSlides } = Astro.props;
 		-webkit-animation: scroll 60s linear infinite;
 	}
 
-	.s-slider:before,
+	/* .s-slider:before,
 	.s-slider:after {
 		position: absolute;
 		top: 0;
-		width: 100px; /* Ancho de la capa de degradación */
+		width: 100px; /* Ancho de la capa de degradación
 		height: 100%;
 		content: "";
 		z-index: 2;
-	}
+	} */
 
 	.s-slider::before {
 		left: 0;
@@ -83,10 +83,10 @@ const { numSlides } = Astro.props;
 			width: 96dvw;
 		}
 
-		.s-slider:before,
+		/* .s-slider:before,
 		.s-slider:after {
-			width: 30px; /* Ancho de la capa de degradación */
-		}
+			width: 30px; /* Ancho de la capa de degradación
+		} */
 	}
 </style>
 

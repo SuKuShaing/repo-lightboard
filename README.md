@@ -22,6 +22,7 @@
 - [x] Hacer las lines de luz, pls!!!!
 
 ## Por hacer
+- [ ] Revisar cómo funciona bien el tema del component Image para ver sí está haciendolo bien
 - [ ] que al presionar el mail de Andres@lightBoard.cl se copie al portapapeles
 - [ ] Colocar los videos y la flecha en la sección de promesa visual
 - [x] Revisar por qué el sitemap no está funcionando, ahora está funcionando :D

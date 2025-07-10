@@ -17,13 +17,13 @@
 	/*───────── una vez cargada la web se ejecute ─────────*/
 	function estoyListo() {
 		/*───────── CONFIGURACIÓN GENERAL ─────────*/
+		const NUM_LINES = 3;                    // número de líneas a la vez, optimo 3
+		const POINTS = 20;                      // puntos del cuerpo de la línea
+		const AMPLITUDE = 1;                    // amplitud de la onda
+		const SEGMENT_FRAC = 0.2;               // largo de la línea, fracción de segmento
 		const BORDER_WIDTH = 10;                // grosor del borde color
 		const CORE_WIDTH = BORDER_WIDTH / 3;    // grosor núcleo blanco
 		const GLOW_BLUR = 20;                   // desenfoque del halo
-		const POINTS = 12;                      // puntos del cuerpo de la línea
-		const NUM_LINES = 3;                    // número de líneas a la vez
-		const SEGMENT_FRAC = 0.2;               // largo de la línea, fracción de segmento
-		const AMPLITUDE = 4;                    // amplitud de la onda
 		const SPEED_MIN = 0.00003;              // velocidad mínima de la línea, velocidad original 0.0001
 		const SPEED_MAX = 0.00010;              // velocidad máxima de la línea, velocidad original 0.0004
 		const NOISE_SPEED = 0.0002;             // velocidad del ruido, velocidad original 0.002
