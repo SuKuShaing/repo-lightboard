@@ -21,12 +21,12 @@
 		const CORE_WIDTH = BORDER_WIDTH / 3;    // grosor núcleo blanco
 		const GLOW_BLUR = 20;                   // desenfoque del halo
 		const POINTS = 12;                      // puntos del cuerpo de la línea
-		const NUM_LINES = 5;                    // número de líneas a la vez
+		const NUM_LINES = 3;                    // número de líneas a la vez
 		const SEGMENT_FRAC = 0.2;               // largo de la línea, fracción de segmento
 		const AMPLITUDE = 4;                    // amplitud de la onda
-		const SPEED_MIN = 0.00003;               // velocidad mínima de la línea, velocidad original 0.0001
-		const SPEED_MAX = 0.00010;               // velocidad máxima de la línea, velocidad original 0.0004
-		const NOISE_SPEED = 0.0002;              // velocidad del ruido, velocidad original 0.002
+		const SPEED_MIN = 0.00003;              // velocidad mínima de la línea, velocidad original 0.0001
+		const SPEED_MAX = 0.00010;              // velocidad máxima de la línea, velocidad original 0.0004
+		const NOISE_SPEED = 0.0002;             // velocidad del ruido, velocidad original 0.002
 
 		/* % de líneas que serán SOLO UNA curva Bézier */
 		const SINGLE_CHANCE = 0.6; // 60 % simples, 40 % dobles
@@ -35,8 +35,8 @@
 		const palette = ["#0f0", "#f0f", "#f00", "#0ff", "#ff0", "#f80", "#fff", "#0004ff", "#8f00ff"];
 
 		/*───────── CANVAS ─────────*/
-		const canvas = document.getElementById("lienzo");
-		const ctx = canvas.getContext("2d");
+		const canvas = document.getElementById("lienzo") as HTMLCanvasElement;
+		const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 		const resize = () => {
 			canvas.width = innerWidth;
 			canvas.height = innerHeight;

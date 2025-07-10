@@ -19,7 +19,7 @@
 - [x] variar el degrade en slider de imágenes para que en mobile sea menos ancho 
 - [x] Reparar la flecha del hero -> se reparó, pero no da blur al fondo, insalvable
 - [x] Crear el mail de Andres@lightBoard.cl para que lleguen los mails
-- [ ] Hacer las lines de luz, pls!!!!
+- [x] Hacer las lines de luz, pls!!!!
 
 ## Por hacer
 - [ ] que al presionar el mail de Andres@lightBoard.cl se copie al portapapeles
