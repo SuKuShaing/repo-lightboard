@@ -2,9 +2,9 @@
 
 [Web de Lightboard disponible aquí](https://lightboard.cl/)
 
-## Technologías utilizadas
+## Tecnologías utilizadas
 
-- **Frontend**: Astro, CSS puro
+- **Frontend**: Astro, CSS puro, JavaScript Vanilla
 - **Despliegue**: Cloudflare Pages
 
 ## Por hacer (críticos)
@@ -20,9 +20,11 @@
 - [x] Reparar la flecha del hero -> se reparó, pero no da blur al fondo, insalvable
 - [x] Crear el mail de Andres@lightBoard.cl para que lleguen los mails
 - [x] Hacer las lines de luz, pls!!!!
+- [ ] Que las luces se demoren 1.5 segundos en aparecer
+- [ ] Colocar bien el tema de compartir en RRSS que se vea bien
 
 ## Por hacer
-- [ ] Revisar cómo funciona bien el tema del component Image para ver sí está haciendolo bien
+- [ ] Revisar cómo funciona bien el tema del component Image para ver sí está haciéndolo bien
 - [ ] que al presionar el mail de Andres@lightBoard.cl se copie al portapapeles
 - [ ] Colocar los videos y la flecha en la sección de promesa visual
 - [x] Revisar por qué el sitemap no está funcionando, ahora está funcionando :D
@@ -31,5 +33,5 @@
 ### Por hacer (opcionales)
 - [ ] _Colocar la tipografía al mail y a la página web_
 - [ ] _Colocar las viewTransitions suaves en los modales_
-- [ ] _Colocarle un ruido a la transparencia de las lightboard_
+- [ ] _Colocar un ruido a la transparencia de las lightboard_
 - [ ] _Poder pasar y ver la siguiente card de la promesa visual con el teclado o una flecha_
