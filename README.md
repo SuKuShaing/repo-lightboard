@@ -21,7 +21,7 @@
 - [x] Crear el mail de Andres@lightBoard.cl para que lleguen los mails
 - [x] Hacer las lines de luz, pls!!!!
 - [x] Colocar bien el tema de compartir en RRSS que se vea bien
-- [ ] Que las luces se demoren 1.5 segundos en aparecer
+- [x] Que las luces se demoren 1.5 segundos en aparecer
 
 ## Por hacer
 - [ ] Revisar cómo funciona bien el tema del component Image para ver sí está haciéndolo bien

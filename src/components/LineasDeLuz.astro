@@ -231,5 +231,7 @@
 		requestAnimationFrame(draw);
 	}
 
-	document.addEventListener("DOMContentLoaded", estoyListo);
+	document.addEventListener("DOMContentLoaded", () => {
+		setTimeout(estoyListo, 1500);
+	});
 </script>
