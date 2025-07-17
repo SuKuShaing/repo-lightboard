@@ -20,8 +20,8 @@
 - [x] Reparar la flecha del hero -> se reparó, pero no da blur al fondo, insalvable
 - [x] Crear el mail de Andres@lightBoard.cl para que lleguen los mails
 - [x] Hacer las lines de luz, pls!!!!
+- [x] Colocar bien el tema de compartir en RRSS que se vea bien
 - [ ] Que las luces se demoren 1.5 segundos en aparecer
-- [ ] Colocar bien el tema de compartir en RRSS que se vea bien
 
 ## Por hacer
 - [ ] Revisar cómo funciona bien el tema del component Image para ver sí está haciéndolo bien
