@@ -38,17 +38,29 @@ import Grilla from "@/components/Grilla.astro";
 		<meta property="og:url" content="https://lightboard.cl/" />
 		<meta property="og:site_name" content="Lightboard.cl" />
 		<meta property="og:title" content="Lightboard | Mejora tus clases online" />
-		<meta property="og:description" content="Lightboard en Chile. Mejora tus clases online con la pizarra de luz. Ideal para universidades, colegios, liceos, profesores y estudiantes." />
+		<meta
+			property="og:description"
+			content="Lightboard en Chile. Mejora tus clases online con la pizarra de luz. Ideal para universidades, colegios, liceos, profesores y estudiantes."
+		/>
 		<meta property="og:type" content="website" />
 		<meta property="og:image" content="https://lightboard.cl/imagen-rrss.jpg" />
 		<!-- La og:image debe ir la URL completa para que se pueda leer bien por las demás webs al compartir -->
 		<!-- La og:image debe ser PNG, JPG o JPEG -->
-		
+
 		<!-- RRSS Twitter -->
-		<meta name="twitter:image" content="https://lightboard.cl/imagen-rrss.jpg" />
+		<meta
+			name="twitter:image"
+			content="https://lightboard.cl/imagen-rrss.jpg"
+		/>
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Lightboard | Mejora tus clases online">
-		<meta name="twitter:description" content="Lightboard en Chile. Mejora tus clases online con la pizarra de luz. Ideal para universidades, colegios, liceos, profesores y estudiantes."> 
+		<meta
+			name="twitter:title"
+			content="Lightboard | Mejora tus clases online"
+		/>
+		<meta
+			name="twitter:description"
+			content="Lightboard en Chile. Mejora tus clases online con la pizarra de luz. Ideal para universidades, colegios, liceos, profesores y estudiantes."
+		/>
 		<!-- <meta property="twitter:site" content="@usuario_twitter" /> -->
 		<!-- <meta property="twitter:creator" content="@usuario_twitter" /> -->
 
@@ -57,21 +69,92 @@ import Grilla from "@/components/Grilla.astro";
 
 		<!-- Analytics -->
 		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-N7SL38QQ3B"></script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-N7SL38QQ3B"
+		></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', 'G-N7SL38QQ3B');
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+			gtag("config", "G-N7SL38QQ3B");
 		</script>
-		
+
 		<!-- Clarity -->
 		<script type="text/javascript">
-			(function(c,l,a,r,i,t,y){
-				c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-				t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-				y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+			(function (c, l, a, r, i, t, y) {
+				c[a] =
+					c[a] ||
+					function () {
+						(c[a].q = c[a].q || []).push(arguments);
+					};
+				t = l.createElement(r);
+				t.async = 1;
+				t.src = "https://www.clarity.ms/tag/" + i;
+				y = l.getElementsByTagName(r)[0];
+				y.parentNode.insertBefore(t, y);
 			})(window, document, "clarity", "script", "sgjuy00psb");
+		</script>
+
+		<!-- Schema -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@graph": [
+					{
+						"@type": "WebSite",
+						"@id": "https://lightboard.cl/#website",
+						"url": "https://lightboard.cl/",
+						"name": "Lightboard Chile",
+						"description": "Obtén tu pizarra de luz (lightboard) en Chile y mejora tus clases online.",
+						"inLanguage": "es",
+						"potentialAction": {
+							"@type": "SearchAction",
+							"target": "https://lightboard.cl/?s={search_term_string}",
+							"query-input": "required name=search_term_string"
+						}
+					},
+					{
+						"@type": "Organization",
+						"@id": "https://lightboard.cl/#organization",
+						"name": "Lightboard Chile",
+						"url": "https://lightboard.cl/",
+						"description": "Fabricación y venta de pizarras de luz para universidades, colegios y docentes.",
+						"logo": "https://lightboard.cl/logo-lightboard.jpg",
+						"contactPoint": [
+							{
+								"@type": "ContactPoint",
+								"contactType": "ventas",
+								"email": "mailto:andres@lightboard.cl",
+								"availableLanguage": ["es", "en"]
+							}
+						]
+					},
+					{
+						"@type": "Product",
+						"@id": "https://lightboard.cl/#producto",
+						"name": "Lightboard (pizarra de luz)",
+						"description": "Pizarra transparente iluminada que permite escribir de cara a la cámara; altura regulable y colores LED configurables.",
+						"image": ["https://lightboard.cl/imagen-rrss.jpg"],
+						"brand": {
+							"@type": "Brand",
+							"name": "Lightboard Chile"
+						},
+						"offers": {
+							"@type": "Offer",
+							"url": "https://lightboard.cl/#cotizar",
+							"availability": "https://schema.org/PreOrder",
+							"price": "2500000",
+							"priceCurrency": "CLP",
+							"priceSpecification": {
+								"@type": "PriceSpecification",
+								"price": "2500000",
+								"priceCurrency": "CLP"
+							}
+						}
+					}
+				]
+			}
 		</script>
 	</head>
 	<body>
