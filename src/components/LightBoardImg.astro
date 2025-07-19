@@ -7,10 +7,10 @@ interface Props {
 	alt: string;
 	ancho: number;
 	clases?: string;
-	carga?: "lazy" | "eager";
+	priority?: boolean;
 }
 
-const { src, alt, ancho, clases, carga = "lazy" } = Astro.props;
+const { src, alt, ancho, clases, priority = false } = Astro.props;
 ---
 
 <div class={`${clases}`} style={`max-width: ${ancho}px;`}>
@@ -20,8 +20,13 @@ const { src, alt, ancho, clases, carga = "lazy" } = Astro.props;
 		widths={[600, 1000, 2000, 3000, src.width]}
 		sizes={`(max-width: 400px) 600px, (max-width: 700px) 1000px, (max-width: 1600px) 2000px, (max-width: 2400px) 3000px, ${src.width}px`}
 		class="Img"
-		loading={carga}
+		{...priority && { priority: true }}
 	/>
+	<!-- 
+	{...priority && { priority: true }}
+	es lo mismo que:
+	{priority ? <Image ... priority={true} /> : <Image ... />}
+	-->
 </div>
 
 <style>

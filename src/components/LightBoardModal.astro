@@ -8,10 +8,10 @@ interface Props {
 	alt: string;
 	ancho: number;
 	modalId?: string;
-	carga?: "lazy" | "eager";
+	priority?: boolean;
 }
 
-const { src, alt, ancho, modalId, carga = "lazy" } = Astro.props;
+const { src, alt, ancho, modalId, priority = false } = Astro.props;
 const id = modalId ?? `dialog-${Math.random().toString(36).slice(2, 10)}`;
 ---
 
@@ -21,7 +21,7 @@ const id = modalId ?? `dialog-${Math.random().toString(36).slice(2, 10)}`;
 	data-idNombreModal={id}
 	style={`max-width: ${ancho}px`}
 >
-	<LightBoardImg src={src} alt={alt} ancho={ancho} carga={carga} />
+	<LightBoardImg src={src} alt={alt} ancho={ancho} priority={priority} />
 </div>
 
 <dialog id={id}>
