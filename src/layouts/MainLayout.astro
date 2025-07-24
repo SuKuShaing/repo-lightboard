@@ -67,33 +67,101 @@ import Grilla from "@/components/Grilla.astro";
 		<!-- Site Map -->
 		<link rel="sitemap" href="/sitemap-index.xml" />
 
-		<!-- Analytics -->
+		<!-- Analítica -->
 		<!-- Google tag (gtag.js) -->
-		<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-N7SL38QQ3B"
+		<script defer src="https://www.googletagmanager.com/gtag/js?id=G-N7SL38QQ3B"
 		></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
-			}
-			gtag("js", new Date());
-			gtag("config", "G-N7SL38QQ3B");
-		</script> -->
+		<!-- defer para que se cargue después de que se cargue el DOM -->
 
-		<!-- Clarity -->
-		<script type="text/javascript">
-			(function (c, l, a, r, i, t, y) {
-				c[a] =
-					c[a] ||
-					function () {
+		<script>
+			let analyticsLoadAttempts = 0;
+			const MAX_ATTEMPTS = 25; // Máximo 5 segundos (25 * 200ms)
+
+			function loadAnalytics() {
+				// Verificar que gtag esté disponible
+				if (typeof gtag === "undefined") {
+					analyticsLoadAttempts++;
+
+					// Si excedemos los intentos, cargar solo Clarity
+					if (analyticsLoadAttempts >= MAX_ATTEMPTS) {
+						console.warn(
+							"Google Analytics no se pudo cargar después de múltiples intentos"
+						);
+						loadClarityOnly();
+						removeListeners();
+						return;
+					}
+
+					// Reintentar después de 200ms
+					setTimeout(loadAnalytics, 200);
+					return;
+				}
+
+				// Analytics
+				window.dataLayer = window.dataLayer || [];
+				function gtag() {
+					dataLayer.push(arguments);
+				}
+				gtag("js", new Date());
+				gtag("config", "G-N7SL38QQ3B");
+
+				// Clarity
+				(function (c, l, a, r, i, t, y) {
+					c[a] =
+						c[a] ||
+						function () {
+							(c[a].q = c[a].q || []).push(arguments);
+						};
+					t = l.createElement(r);
+					t.async = 1;
+					t.src = "https://www.clarity.ms/tag/" + i;
+					y = l.getElementsByTagName(r)[0];
+					y.parentNode.insertBefore(t, y);
+				})(window, document, "clarity", "script", "sgjuy00psb");
+
+				// Remover listeners, aunque con { once: true } no es necesario
+				removeListeners();
+			}
+
+			function loadClarityOnly() {
+				(function (c, l, a, r, i, t, y) {
+					c[a] = c[a] || function () {
 						(c[a].q = c[a].q || []).push(arguments);
 					};
-				t = l.createElement(r);
-				t.async = 1;
-				t.src = "https://www.clarity.ms/tag/" + i;
-				y = l.getElementsByTagName(r)[0];
-				y.parentNode.insertBefore(t, y);
-			})(window, document, "clarity", "script", "sgjuy00psb");
+					t = l.createElement(r);
+					t.async = 1;
+					t.src = "https://www.clarity.ms/tag/" + i;
+					y = l.getElementsByTagName(r)[0];
+					y.parentNode.insertBefore(t, y);
+				})(window, document, "clarity", "script", "sgjuy00psb");
+			}
+
+			function removeListeners() {
+				window.removeEventListener("load", onLoad);
+				window.removeEventListener("scroll", onScroll);
+				window.removeEventListener("mousemove", onMouseMove);
+				window.removeEventListener("touchstart", onTouchStart);
+			}
+
+			// Handlers para cada evento que invocan loadAnalytics y remueven listeners
+			function onLoad() {
+				loadAnalytics();
+			}
+			function onScroll() {
+				loadAnalytics();
+			}
+			function onMouseMove() {
+				loadAnalytics();
+			}
+			function onTouchStart() {
+				loadAnalytics();
+			}
+
+			// Asociar los eventos con { once: true } para que se ejecuten solo una vez
+			window.addEventListener("load", onLoad, { once: true });
+			window.addEventListener("scroll", onScroll, { once: true });
+			window.addEventListener("mousemove", onMouseMove, { once: true });
+			window.addEventListener("touchstart", onTouchStart, { once: true });
 		</script>
 
 		<!-- Schema -->
@@ -107,7 +175,7 @@ import Grilla from "@/components/Grilla.astro";
 						"url": "https://lightboard.cl/",
 						"name": "Lightboard Chile",
 						"description": "Obtén tu pizarra de luz (lightboard) en Chile y mejora tus clases online.",
-						"inLanguage": "es",
+						"inLanguage": "es"
 					},
 					{
 						"@type": "Organization",
