@@ -11,4 +11,17 @@ export default defineConfig({
 			lastmod: new Date(),
 		}),
 	],
+	build: {
+		inlineStylesheets: "always", // Inline CSS crítico
+	},
+	vite: {
+		build: {
+			cssMinify: true,
+			rollupOptions: {
+				output: {
+					manualChunks: undefined, // Evitar chunking innecesario
+				},
+			},
+		},
+	},
 });
