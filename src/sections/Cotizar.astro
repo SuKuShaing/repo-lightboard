@@ -14,26 +14,32 @@ import TextH3 from "@/components/TextH3.astro";
 				¿Por qué hay pasos? Porque las lightboard no están listas, se arman con
 				cada pedido
 			</Parrafo>
-			<ul>
-				<LightBoardText>
-					<Parrafo align="center">
-						&#8226; <span>Paso 1 :</span> Pedir la cotización al mail Andres@lightBoard.cl especificando la región y comuna
-						en la cual se debe realizar la entrega
-					</Parrafo>
-				</LightBoardText>
-				<LightBoardText>
-					<Parrafo align="center">
-						&#8226; <span>Paso 2 :</span> te respondemos la cotización
-					</Parrafo>
-				</LightBoardText>
-				<LightBoardText>
-					<Parrafo align="center">
-						&#8226; <span>Paso 3 :</span> una vez aceptada la cotización se debe
-						pagar al menos el 50% del servicio, y el otro 50% se paga
-						posterior a la entrega
-					</Parrafo>
-				</LightBoardText>
-			</ul>
+			<ol>
+				<li title="Paso 1">
+					<LightBoardText>
+						<Parrafo align="center">
+							&#8226; <span>Paso 1 :</span> Pedir la cotización al mail Andres@lightBoard.cl
+							especificando la región y comuna en la cual se debe realizar la entrega
+						</Parrafo>
+					</LightBoardText>
+				</li>
+				<li title="Paso 2">
+					<LightBoardText>
+						<Parrafo align="center">
+							&#8226; <span>Paso 2 :</span> te respondemos la cotización
+						</Parrafo>
+					</LightBoardText>
+				</li>
+				<li title="Paso 3">
+					<LightBoardText>
+						<Parrafo align="center">
+							&#8226; <span>Paso 3 :</span> una vez aceptada la cotización se debe
+							pagar al menos el 50% del servicio, y el otro 50% se paga posterior
+							a la entrega
+						</Parrafo>
+					</LightBoardText>
+				</li>
+			</ol>
 			<Parrafo align="center">
 				Entregamos una Boleta honorarios por el total del monto cotizado
 			</Parrafo>
@@ -72,7 +78,7 @@ import TextH3 from "@/components/TextH3.astro";
 		-webkit-text-fill-color: transparent;
 	}
 
-	ul {
+	ol {
 		margin: 40px 0;
 		max-width: 1000px;
 		display: flex;
@@ -89,7 +95,7 @@ import TextH3 from "@/components/TextH3.astro";
 			margin-top: 10px;
 		}
 
-		ul {
+		ol {
 			margin: 40px 0;
 			gap: 10px;
 		}

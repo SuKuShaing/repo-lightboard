@@ -13,22 +13,22 @@ import Logo from "@svgs/logo-lightboard.svg";
 ---
 
 <header>
-	<a class="logo" href="#">
-		<Logo class="logo-svg" />
+	<a class="logo" href="/" title="Ir a la página principal - LightBoard Chile">
+		<Logo class="logo-svg" aria-label="Logo LightBoard Chile" />
 	</a>
 	<nav
 		onclick="document.getElementById('menu-toggle').checked = !document.getElementById('menu-toggle').checked"
 	>
-		<label for="menu-toggle" class="menu-toggle">
+		<label for="menu-toggle" class="menu-toggle" title="Abrir/Cerrar menú" aria-label="Abrir/Cerrar menú">
 			<input type="checkbox" id="menu-toggle" />
-			<button type="button">
+			<button type="button" title="Abrir/Cerrar menú" aria-label="Abrir/Cerrar menú">
 				<div></div>
 				<div></div>
 				<div></div>
 			</button>
 		</label>
 		<div class="links">
-			{menuItems.map(({ name, href }) => <a href={href}>{name}</a>)}
+			{menuItems.map(({ name, href }) => <a href={href} title={`Ir a ${name}`} aria-label={`Ir a ${name}`}>{name}</a>)}
 		</div>
 	</nav>
 </header>
