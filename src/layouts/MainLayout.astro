@@ -108,11 +108,6 @@ import Grilla from "@/components/Grilla.astro";
 						"name": "Lightboard Chile",
 						"description": "Obtén tu pizarra de luz (lightboard) en Chile y mejora tus clases online.",
 						"inLanguage": "es",
-						"potentialAction": {
-							"@type": "SearchAction",
-							"target": "https://lightboard.cl/?s={search_term_string}",
-							"query-input": "required name=search_term_string"
-						}
 					},
 					{
 						"@type": "Organization",
@@ -120,7 +115,10 @@ import Grilla from "@/components/Grilla.astro";
 						"name": "Lightboard Chile",
 						"url": "https://lightboard.cl/",
 						"description": "Fabricación y venta de pizarras de luz para universidades, colegios y docentes.",
-						"logo": "https://lightboard.cl/logo-lightboard.jpg",
+						"logo": {
+							"@type": "ImageObject",
+							"url": "https://lightboard.cl/logo-lightboard.jpg"
+						},
 						"contactPoint": [
 							{
 								"@type": "ContactPoint",
@@ -134,7 +132,7 @@ import Grilla from "@/components/Grilla.astro";
 						"@type": "Product",
 						"@id": "https://lightboard.cl/#producto",
 						"name": "Lightboard (pizarra de luz)",
-						"description": "Pizarra transparente iluminada que permite escribir de cara a la cámara; altura regulable y colores LED configurables.",
+						"description": "Pizarra invisible que permite escribir de cara a la cámara; altura regulable y colores LED configurables.",
 						"image": ["https://lightboard.cl/imagen-rrss.jpg"],
 						"brand": {
 							"@type": "Brand",
@@ -146,6 +144,7 @@ import Grilla from "@/components/Grilla.astro";
 							"availability": "https://schema.org/PreOrder",
 							"price": "2500000",
 							"priceCurrency": "CLP",
+							"itemCondition": "http://schema.org/NewCondition",
 							"priceSpecification": {
 								"@type": "PriceSpecification",
 								"price": "2500000",
