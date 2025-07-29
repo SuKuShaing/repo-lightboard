@@ -41,7 +41,7 @@
 			canvas.width = innerWidth;
 			canvas.height = innerHeight;
 		};
-		addEventListener("resize", resize);
+		addEventListener("resize", resize);		// Sí escucho el evento de resize, cambia el tamaño del canvas
 		resize();
 
 		/*───────── PERLIN SIMPLE ─────────*/
@@ -125,26 +125,35 @@
 		}
 
 		/*───────── GENERAR LÍNEA ─────────*/
-		const pickSide = (ex) => {
-			const o = SIDES.filter((s) => s !== ex);
-			return o[(Math.random() * o.length) | 0];
+		const pickSide = (ladoExcluido: string): string => { 	// Función que elige un lado azar
+			const o = SIDES.filter((s) => s !== ladoExcluido);	// Filtra los lados que no sean el lado inicial
+			return o[(Math.random() * o.length) | 0]; 			// Devuelve un lado al azar entre los ya filtrados
+			// 2,36737 | 0 = 2, porque al comparar con el 0, forzamos la conversión a entero de 32 bits y compara el entero 2 con 0 y ahí hace la elección, número entero o cero, es más rápido que hacer un Math.floor()
 		};
-		const randOut = (s) =>
-			s === "left"
-				? { x: -0.1, y: Math.random() }
-				: s === "right"
-					? { x: 1.1, y: Math.random() }
-					: s === "top"
-						? { x: Math.random(), y: -0.1 }
-						: { x: Math.random(), y: 1.1 };
+
+		const randOut = (side: string): { x: number, y: number } => {		// Elige un punto al azar según el lado dado
+			if (side === "left") {
+				return { x: -0.1, y: Math.random() };
+			} else if (side === "right") {
+				return { x: 1.1, y: Math.random() };
+			} else if (side === "top") {
+				return { x: Math.random(), y: -0.1 };
+			} else {
+				return { x: Math.random(), y: 1.1 };
+			}
+		};
+
 		function initLine() {
-			const inS = pickSide(),
-				outS = pickSide(inS),
-				A = randOut(inS),
-				D = randOut(outS),
-				B1 = { x: Math.random(), y: Math.random() },
-				C1 = { x: Math.random(), y: Math.random() };
-			const simple = Math.random() < SINGLE_CHANCE;
+			const inS = pickSide('')							// Pide un lado inicial al azar
+			const outS = pickSide(inS)							// Pide un lado final al azar
+
+			/* Puntos para la curva Bézier */
+			const A = randOut(inS)								// Pide un punto al azar en el lado inicial
+			const D = randOut(outS)								// Pide un punto al azar en el lado final
+			const B1 = { x: Math.random(), y: Math.random() };	// Elige un punto intermedio al azar
+			const C1 = { x: Math.random(), y: Math.random() };	// Elige un punto intermedio al azar
+
+			const simple = Math.random() < SINGLE_CHANCE;		// Decide si es una curva simple o doble
 
 			/* puntos extra sólo si es doble curva */
 			const M = simple ? null : { x: Math.random(), y: Math.random() };
@@ -160,21 +169,25 @@
 				B2,
 				C2,
 				D,
-				speed: SPEED_MIN + Math.random() * (SPEED_MAX - SPEED_MIN),
-				pts: Array.from({ length: POINTS }, (_, i) => ({
-					t: i / (POINTS - 1),
-					offset: Math.random() * 1000,
+				speed: SPEED_MIN + Math.random() * (SPEED_MAX - SPEED_MIN),		// Elige la velocidad
+				pts: Array.from({ length: POINTS }, (_, i) => ({  				// el _ es un parámetro que no se usa, se puede llamar como se quiera
+					t: i / (POINTS - 1), 										// valores entre 0 y 1 distribuidos de forma uniforme, para la curva Bézier, 0 = inicio, 1 = fin
+					offset: Math.random() * 1000, 								// para darle la ondulación interna a la línea, la que al final apacigüe, podría sacarlo
 				})),
-				color: palette[(Math.random() * palette.length) | 0],
-				u: -SEGMENT_FRAC * Math.random(),
+				color: palette[(Math.random() * palette.length) | 0],			// Elige un color al azar
+				u: -SEGMENT_FRAC * 2 * Math.random(),							// qué tan tras parte, parte 2 veces atrás de su tamaño
+				/* u = 0 significa que la línea está completamente visible
+				*  u = 1 significa que la línea ha completado su recorrido
+				*  u negativo significa que la línea aún no ha entrado completamente en la pantalla */
 			};
-		}
-		const lines = Array.from({ length: NUM_LINES }, initLine);
+		};
+
+		const lines = Array.from({ length: NUM_LINES }, initLine);	// Crea un array con las propiedades que van a tener las líneas, NUM_LINES (número de líneas) veces, cada vez que se llama a initLine, se crea una nueva línea y se agrega al array
 
 		/*───────── DIBUJO / ANIMACIÓN ─────────*/
 		let last = 0;
-		function draw(now) {
-			const dt = now - last;
+		function draw(now: number) {
+			const dt = now - last; // now es proporcionado por el método requestAnimationFrame(), es el tiempo actual en milisegundos, last es el tiempo de la última vez que se ejecutó la función, dt es la diferencia de tiempo entre la última vez y la actual
 			last = now;
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -228,10 +241,11 @@
 
 			requestAnimationFrame(draw);
 		}
-		requestAnimationFrame(draw);
+		requestAnimationFrame(draw); 
+		// método del objeto window y API del navegador, está específicamente diseñada para crear animaciones optimizadas, sincroniza la petición de animación con el refresco de la pantalla, pausa la animación cuando el usuario cambia de pestaña o minimiza la ventana.
 	}
 
 	document.addEventListener("DOMContentLoaded", () => {
-		setTimeout(estoyListo, 2000);
+		setTimeout(estoyListo, 1000);
 	});
 </script>
