@@ -186,17 +186,19 @@
 
 		/*───────── DIBUJO / ANIMACIÓN ─────────*/
 		let last = 0;
-		function draw(now: number) {
+		function draw(now: number): void {
 			const dt = now - last; // now es proporcionado por el método requestAnimationFrame(), es el tiempo actual en milisegundos, last es el tiempo de la última vez que se ejecutó la función, dt es la diferencia de tiempo entre la última vez y la actual
 			last = now;
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 			lines.forEach((line) => {
 				line.u += line.speed * dt;
-				if (line.u > 1 + SEGMENT_FRAC) Object.assign(line, initLine());
+				if (line.u > 1 + SEGMENT_FRAC) Object.assign(line, initLine()); // si la línea ha completado su recorrido y ha salido completamente de la vista, se reinicia
+				// Object.assign() copia todas estas nuevas propiedades sobre la línea existente, efectivamente "reciclándola"
 
-				const u0 = line.u - SEGMENT_FRAC,
-					u1 = line.u;
+				const u0 = line.u - SEGMENT_FRAC; 	// u0 es el punto inicial de la línea
+				const u1 = line.u; 					// u1 es el punto final de la línea
+
 				ctx.beginPath();
 				let px, py;
 				line.pts.forEach((p, i) => {
