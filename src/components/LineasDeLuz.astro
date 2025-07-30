@@ -19,14 +19,14 @@
 		/*───────── CONFIGURACIÓN GENERAL ─────────*/
 		const NUM_LINES = 3;                    // número de líneas a la vez, optimo 3
 		const POINTS = 20;                      // puntos del cuerpo de la línea
-		const AMPLITUDE = 1;                    // amplitud de la onda
 		const SEGMENT_FRAC = 0.2;               // largo de la línea, fracción de segmento
 		const BORDER_WIDTH = 10;                // grosor del borde color
 		const CORE_WIDTH = BORDER_WIDTH / 3;    // grosor núcleo blanco
 		const GLOW_BLUR = 20;                   // desenfoque del halo
 		const SPEED_MIN = 0.00003;              // velocidad mínima de la línea, velocidad original 0.0001
 		const SPEED_MAX = 0.00010;              // velocidad máxima de la línea, velocidad original 0.0004
-		const NOISE_SPEED = 0.0002;             // velocidad del ruido, velocidad original 0.002
+		// const AMPLITUDE = 1;                 // amplitud de la onda -> se puede sacar
+		// const NOISE_SPEED = 0.0002;          // velocidad del ruido, velocidad original 0.002 -> se puede sacar
 
 		/* % de líneas que serán SOLO UNA curva Bézier */
 		const SINGLE_CHANCE = 0.6; // 60 % simples, 40 % dobles
@@ -44,7 +44,33 @@
 		addEventListener("resize", resize);		// Sí escucho el evento de resize, cambia el tamaño del canvas
 		resize();
 
+		/*───────── INTERFAZ ─────────*/
+		interface Line {
+			simple: boolean;
+			A: Punto;
+			B1: Punto;
+			C1: Punto;
+			D: Punto;
+			M: Punto | null;
+			B2: Punto | null;
+			C2: Punto | null;
+			pts: PropiedadesPunto[];
+			color: string;
+			u: number;
+		};
+
+		interface Punto {
+			x: number;
+			y: number;
+		};
+
+		interface PropiedadesPunto {
+			t: number;
+			offset: number;
+		}
+
 		/*───────── PERLIN SIMPLE ─────────*/
+		/*
 		const perm = new Uint8Array(512);
 		(() => {
 			const p = Uint8Array.from({ length: 256 }, (_, i) => i);
@@ -54,10 +80,19 @@
 			}
 			for (let i = 0; i < 512; i++) perm[i] = p[i & 255];
 		})();
-		const fade = (t) => t * t * t * (t * (t * 6 - 15) + 10),
-			lerp = (a, b, t) => a + t * (b - a),
-			grad = (h, x, y) => (h & 1 ? -x : x) + (h & 2 ? -2 * y : 2 * y);
-		function perlin2D(x, y) {
+		const fade = (t: number): number => t * t * t * (t * (t * 6 - 15) + 10);
+		const lerp = (a: number, b: number, t: number): number => a + t * (b - a);
+		const grad = (h: number, x: number, y: number): number => (h & 1 ? -x : x) + (h & 2 ? -2 * y : 2 * y);
+		
+		function perlin2D(x: number, y: number): number {
+			/* El Perlin Noise (ruido de Perlin) es un tipo de ruido gradiente que genera valores pseudoaleatorios suaves y naturales
+			*  x: que es p.offset (cambia con el tiempo)
+			*  y: que es i * 10 (posición a lo largo de la línea)
+			*  Genera un valor de ruido que:
+			*  - Es consistente (los mismos inputs siempre dan los mismos outputs)
+			*  - Es suave (no hay cambios bruscos entre valores cercanos)
+			*  - Parece aleatorio pero tiene una apariencia natural
+			
 			const X = (x | 0) & 255,
 				Y = (y | 0) & 255,
 				xf = x - (x | 0),
@@ -72,10 +107,23 @@
 				x2 = lerp(grad(ab, xf, yf - 1), grad(bb, xf - 1, yf - 1), u);
 			return lerp(x1, x2, v);
 		}
-
+		*/
 		/*───────── BÉZIER CÚBICA ─────────*/
-		const cubic = (P0, P1, P2, P3, t) => {
-			const u = 1 - t;
+		const cubic = (P0: Punto, P1: Punto, P2: Punto, P3: Punto, t: number): Punto => {
+			/* Dado los puntos P0, P1, P2, P3, se calcula la posición del punto Q(t) en la curva Bézier cúbica
+			 *  t es un valor entre 0 y 1 que representa la posición relativa dentro de la curva Bézier
+			 *  P0, P1, P2, P3 son los puntos de control de la curva Bézier
+			 *  P0 es el punto inicial de la curva Bézier
+			 *  P1 es el primer punto de control de la curva Bézier
+			 *  P2 es el segundo punto de control de la curva Bézier
+			 *  P3 es el punto final de la curva Bézier
+			 *  u = 1 - t es el complemento de t, es decir, el valor que falta para llegar a 1
+			 *  u * u * u es el cubo de u, es decir, u elevado a la potencia 3
+			 *  u * u * t es el cuadrado de u por t, es decir, u elevado a la potencia 2 por t
+			 *  t * t * t es el cubo de t, es decir, t elevado a la potencia 3
+			 *  B(t) = (1-t)³P0 + 3(1-t)²tP1 + 3(1-t)t²P2 + t³P3
+			 */
+			const u = 1 - t; // complemento de t, es decir, el valor que falta para llegar a 1
 			return {
 				x:
 					u * u * u * P0.x +
@@ -89,7 +137,12 @@
 					t * t * t * P3.y,
 			};
 		};
-		const cubicDer = (P0, P1, P2, P3, t) => {
+
+		/*
+		const cubicDer = (P0: Punto, P1: Punto, P2: Punto, P3: Punto, t: number): Punto => {
+			/* Dado los puntos P0, P1, P2, P3, se calcula la derivada de la curva Bézier cúbica
+			*  para obtener el vector tangente a la curva Bézier en el punto Q(t)
+			*  que nos indica la dirección de la línea
 			const u = 1 - t;
 			return {
 				x:
@@ -102,27 +155,46 @@
 					3 * t * t * (P3.y - P2.y),
 			};
 		};
+		*/
 
 		/*───────── EVALUAR TRAZADOS ─────────*/
-		function evalCurve(line, t) {
+		function evalCurve(line: Line, t: number): Punto {		// Evalúa sí la curva es simple o doble y según eso pide el la posición dando los puntos de control
+			// responde con la posición del punto en la curva Bézier
+
+			// Línea simple
 			if (line.simple) {
 				return cubic(line.A, line.B1, line.C1, line.D, t);
 			}
-			// doble
+			// Línea doble, al ser doble, se divide en 2 partes el recorrido, la primera parte es la curva de la línea simple, la segunda parte otra curva bézier unida al final de la primera
+			if (!line.M || !line.B2 || !line.C2) {
+				throw new Error("Puntos de control faltantes para línea doble");
+			}
 			if (t < 0.5) {
+				// La primera parte de la línea doble
 				return cubic(line.A, line.B1, line.C1, line.M, t * 2);
 			}
+			// La segunda parte de la línea doble
 			return cubic(line.M, line.B2, line.C2, line.D, (t - 0.5) * 2);
 		}
-		function evalDeriv(line, t) {
+
+		/*
+		function evalDeriv(line: Line, t: number): Punto {		// Evalúa sí la curva es simple o doble y según eso pide el la posición dando los puntos de control
+			// responde con el vector tangente a la curva Bézier en el punto Q(t)
+
 			if (line.simple) {
 				return cubicDer(line.A, line.B1, line.C1, line.D, t);
 			}
+
+			if (!line.M || !line.B2 || !line.C2) {
+				throw new Error("Puntos de control faltantes para línea doble");
+			}
+
 			if (t < 0.5) {
 				return cubicDer(line.A, line.B1, line.C1, line.M, t * 2);
 			}
 			return cubicDer(line.M, line.B2, line.C2, line.D, (t - 0.5) * 2);
 		}
+		*/
 
 		/*───────── GENERAR LÍNEA ─────────*/
 		const pickSide = (ladoExcluido: string): string => { 	// Función que elige un lado azar
@@ -175,17 +247,18 @@
 					offset: Math.random() * 1000, 								// para darle la ondulación interna a la línea, la que al final apacigüe, podría sacarlo
 				})),
 				color: palette[(Math.random() * palette.length) | 0],			// Elige un color al azar
-				u: -SEGMENT_FRAC * 2 * Math.random(),							// qué tan tras parte, parte 2 veces atrás de su tamaño
+				u: -SEGMENT_FRAC * 2 * Math.random(),							// qué tan tras parte, parte 2 veces atrás de su tamaño, el Math.random() es para darle distintos tamaños a las líneas
 				/* u = 0 significa que la línea está completamente visible
 				*  u = 1 significa que la línea ha completado su recorrido
-				*  u negativo significa que la línea aún no ha entrado completamente en la pantalla */
+				*  u negativo significa que la línea aún no ha entrado completamente en la pantalla 
+				*  u mayor a 1 significa que la línea ha salido completamente de la pantalla*/
 			};
 		};
 
 		const lines = Array.from({ length: NUM_LINES }, initLine);	// Crea un array con las propiedades que van a tener las líneas, NUM_LINES (número de líneas) veces, cada vez que se llama a initLine, se crea una nueva línea y se agrega al array
 
 		/*───────── DIBUJO / ANIMACIÓN ─────────*/
-		let last = 0;
+		let last: number = 0;
 		function draw(now: number): void {
 			const dt = now - last; // now es proporcionado por el método requestAnimationFrame(), es el tiempo actual en milisegundos, last es el tiempo de la última vez que se ejecutó la función, dt es la diferencia de tiempo entre la última vez y la actual
 			last = now;
@@ -196,48 +269,60 @@
 				if (line.u > 1 + SEGMENT_FRAC) Object.assign(line, initLine()); // si la línea ha completado su recorrido y ha salido completamente de la vista, se reinicia
 				// Object.assign() copia todas estas nuevas propiedades sobre la línea existente, efectivamente "reciclándola"
 
-				const u0 = line.u - SEGMENT_FRAC; 	// u0 es el punto inicial de la línea
-				const u1 = line.u; 					// u1 es el punto final de la línea
+				const u0 = line.u - SEGMENT_FRAC; 	// u0 es el punto inicial de la línea, cabeza
+				const u1 = line.u; 					// u1 es el punto final de la línea, cola
 
 				ctx.beginPath();
-				let px, py;
+				let px: number = 0;
+				let py: number = 0;
 				line.pts.forEach((p, i) => {
 					const tt = Math.max(0, Math.min(1, u0 + p.t * (u1 - u0)));
-					const Q = evalCurve(line, tt);
-					const d = evalDeriv(line, tt);
-					const dx = d.x * canvas.width,
-						dy = d.y * canvas.height,
-						L = Math.hypot(dx, dy) || 1,
-						nx = -dy / L,
-						ny = dx / L;
-					p.offset += dt * NOISE_SPEED;
-					const n = perlin2D(p.offset, i * 10) * AMPLITUDE,
-						X = Q.x * canvas.width + nx * n,
-						Y = Q.y * canvas.height + ny * n;
-					if (i === 0) ctx.moveTo(X, Y);
-					else {
-						const midX = (px + X) / 2,
-							midY = (py + Y) / 2;
-						ctx.quadraticCurveTo(px, py, midX, midY);
+					/* u0 + p.t * (u1 - u0) es una interpolación lineal entre u0 y u1
+					*  p.t es un valor entre 0 y 1 que representa la posición relativa de cada punto dentro de la línea
+					*  u0 es el punto inicial de la línea, cabeza
+					*  u1 es el punto final de la línea, cola
+					*  Math.min(1, ...): Limita el valor máximo a 1, evitando que se pase del final de la curva
+					*  Math.max(0, ...): Limita el valor mínimo a 0, evitando que se pase del inicio de la curva
+					*  tt  es un valor entre 0 y 1 que representa la posición exacta en la curva Bézier donde debe evaluarse cada punto individual de la línea de luz
+					*/
+					const Q = evalCurve(line, tt);		// obtiene la posición del punto en la curva Bézier
+
+					/* Comenté estas lineas porque al final no ocupé el zigzagueo de la línea, solo la curva Bézier */
+					// const d = evalDeriv(line, tt);		// obtiene el vector tangente a la curva Bézier en el punto Q, que me dice dirección de la línea
+					// const dx = d.x * canvas.width;		// componente x del vector tangente
+					// const dy = d.y * canvas.height;		// componente y del vector tangente
+					// const L = Math.hypot(dx, dy) || 1;	// longitud del vector tangente, Math.hypot() es la hipotenusa de los catetos dx y dy
+					// const nx = -dy / L;					// es la componente x del vector normal unitario, el vector normal es perpendicular (hacia afuera del plano) al vector tangente
+					// const ny = dx / L;					// es la componente y del vector normal unitario, el vector normal es perpendicular (hacia afuera del plano) al vector tangente
+					// p.offset += dt * NOISE_SPEED;		// Mueve el offset según la velocidad del ruido y la diferencia de tiempo entre un fotograma y el anterior
+					// const n = perlin2D(p.offset, i * 10) * AMPLITUDE;	// calcula el valor de ruido para el punto actual
+
+					const X = Q.x * canvas.width;					// calcula la posición en el plano del punto en la línea de luz, original X = Q.x * canvas.width + nx * n;
+					const Y = Q.y * canvas.height;					// calcula la posición en el plano del punto en la línea de luz, original Y = Q.y * canvas.height + ny * n;
+					if (i === 0) ctx.moveTo(X, Y); 					// si es el primer punto, se mueve al punto
+					else {											// si no, se dibuja una curva Bézier
+						const midX = (px + X) / 2;					// calcula el punto medio entre el punto actual y el siguiente
+						const midY = (py + Y) / 2;					// calcula el punto medio entre el punto actual y el siguiente
+						ctx.quadraticCurveTo(px, py, midX, midY);	// dibuja una curva cuadrática para un efecto de suavizado entre un punto y el otro
 					}
-					px = X;
-					py = Y;
+					px = X;							// actualiza el punto actual
+					py = Y;							// actualiza el punto actual
 				});
-				ctx.lineTo(px, py);
+				ctx.lineTo(px, py);					// dibuja la línea desde el último punto hasta el punto actual, solo para el último punto
 
 				/* borde coloreado + halo */
-				ctx.lineCap = "round";
-				ctx.lineJoin = "round";
-				ctx.lineWidth = BORDER_WIDTH;
-				ctx.strokeStyle = line.color;
-				ctx.shadowColor = line.color;
-				ctx.shadowBlur = GLOW_BLUR;
+				ctx.lineCap = "round";			// redondea los extremos de la línea
+				ctx.lineJoin = "round";			// redondea los ángulos de la línea
+				ctx.lineWidth = BORDER_WIDTH;	// grosor del borde de la línea
+				ctx.strokeStyle = line.color;	// color del borde de la línea
+				ctx.shadowColor = line.color;	// color del halo de la línea
+				ctx.shadowBlur = GLOW_BLUR;		// desenfoque del halo de la línea
 				ctx.stroke();
 
 				/* núcleo blanco */
-				ctx.lineWidth = CORE_WIDTH;
-				ctx.shadowBlur = 0;
-				ctx.strokeStyle = "#fff";
+				ctx.lineWidth = CORE_WIDTH;		// grosor del núcleo de la línea
+				ctx.shadowBlur = 0;				// desenfoque del núcleo de la línea
+				ctx.strokeStyle = "#fff";		// color del núcleo de la línea
 				ctx.stroke();
 			});
 
